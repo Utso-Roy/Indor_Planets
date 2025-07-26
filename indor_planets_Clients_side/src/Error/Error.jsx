@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Footer = () => {
+const Error = () => {
     return (
         <div>
-            this is footer 
+            error page 
         </div>
     );
 };
 
-export default Footer;
+export default Error;
