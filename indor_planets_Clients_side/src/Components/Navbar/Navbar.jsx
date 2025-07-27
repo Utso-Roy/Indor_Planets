@@ -17,6 +17,18 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to=""
+          className={({ isActive }) =>
+            isActive
+              ? "text-green-600 underline font-bold"
+              : "text-green-500"
+          }
+        >
+          Learn
+        </NavLink>
+      </li>
     </>
   );
 
@@ -73,8 +85,15 @@ const Navbar = () => {
           </div>
 
           {/* Right Side Button */}
-          <div className="navbar-end">
-            <button className="btn cursor-pointer">Button</button>
+          <div className="navbar-end gap-2">
+            
+            <Link to="/login">
+              <button className="cursor-pointer text-green-500 hover:text-text-green-700 hover:underline  ">Login</button>
+            </Link>
+            <span className="text-green-500">\</span>
+            <Link to="/register">
+              <button className="cursor-pointer text-green-500 hover:text-text-green-700 hover:underline ">Register</button>
+            </Link>
           </div>
         </div>
       </div>
