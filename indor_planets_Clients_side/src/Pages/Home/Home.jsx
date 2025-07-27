@@ -10,9 +10,9 @@ const Home = () => {
 
 
   return (
-      <div>
+      <main>
           
-          <div className="min-h-screen bg-gradient-to-br from-[#d0fede] to-[#a2d9b1] flex items-center justify-center px-6 py-1">
+          <div className="min-h-screen bg-gradient-to-r from-green-100 via-lime-100 to-green-100 flex items-center justify-center px-6 py-1">
       <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Text Section */}
         <div data-aos="fade-right"
@@ -50,7 +50,7 @@ const Home = () => {
           
           
 
-    </div>
+    </main>
   );
 };
 

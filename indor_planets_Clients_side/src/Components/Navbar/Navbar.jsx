@@ -19,7 +19,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to=""
+          to="/learn"
           className={({ isActive }) =>
             isActive
               ? "text-green-600 underline font-bold"
@@ -87,13 +87,27 @@ const Navbar = () => {
           {/* Right Side Button */}
           <div className="navbar-end gap-2">
             
-            <Link to="/login">
-              <button className="cursor-pointer text-green-500 hover:text-text-green-700 hover:underline  ">Login</button>
-            </Link>
+             <NavLink
+          to="/login"
+          className={({ isActive }) =>
+            isActive
+              ? "text-green-600  font-bold"
+              : "text-green-500"
+          }
+        >
+         <button className="cursor-pointer">Login</button>
+        </NavLink>
             <span className="text-green-500">\</span>
-            <Link to="/register">
-              <button className="cursor-pointer text-green-500 hover:text-text-green-700 hover:underline ">Register</button>
-            </Link>
+             <NavLink
+          to="/register"
+          className={({ isActive }) =>
+            isActive
+              ? "text-green-600  font-bold"
+              : "text-green-500"
+          }
+        >
+          <button className="cursor-pointer"> Register</button>
+        </NavLink>
           </div>
         </div>
       </div>
