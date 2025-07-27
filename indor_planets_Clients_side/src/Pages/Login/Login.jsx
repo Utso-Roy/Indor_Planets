@@ -8,7 +8,7 @@ const Login = () => {
     const togglePassword = () => setShowPassword(!showPassword);
 
     return (
-       <div className="min-h-screen bg-green-100 flex justify-center items-center px-4">
+       <div className="min-h-screen bg-base-300 flex justify-center items-center px-4">
     <div className="bg-white  rounded-xl shadow-2xl w-full max-w-3xl  p-6 lg:p-10">
                 <div className='bg-gradient-to-t from-green-100 via-lime-100 to-green-50 flex flex-col lg:flex-row items-center overflow-hidden'>
                     
