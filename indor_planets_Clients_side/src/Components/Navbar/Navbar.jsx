@@ -41,6 +41,18 @@ const Navbar = () => {
           Plant Care
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/plantFertilizer"
+          className={({ isActive }) =>
+            isActive
+              ? "text-green-600 underline font-bold"
+              : "text-green-500"
+          }
+        >
+          Plant Fertilizer
+        </NavLink>
+      </li>
     </>
   );
 

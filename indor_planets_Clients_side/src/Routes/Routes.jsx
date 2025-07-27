@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Learn from "../Pages/Learn/Learn";
 import PlantCare from "../Pages/PlantCare/PlantCare";
+import Fertilizer from "../Pages/Fertilizer/Fertilizer";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
       {
         path: '/plantCare',
         element : <PlantCare></PlantCare>
+      }
+      ,
+      {
+        path: '/plantFertilizer',
+        element : <Fertilizer></Fertilizer>
       }
       
   ]

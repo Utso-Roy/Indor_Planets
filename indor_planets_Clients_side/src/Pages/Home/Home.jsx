@@ -7,8 +7,6 @@ const Home = () => {
   useEffect(() => {
     AOS.init();
   }, []);
-
-
   return (
       <main>
           
