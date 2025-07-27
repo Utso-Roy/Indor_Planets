@@ -8,6 +8,7 @@ const Home = () => {
     AOS.init();
   }, []);
 
+
   return (
       <div>
           
@@ -26,7 +27,7 @@ const Home = () => {
           <p className="text-lg md:text-xl text-green-800 mb-6">
             Discover our exclusive collection of air-purifying indoor plants to refresh your space.
           </p>
-          <button className="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded shadow-md transition-all duration-300">
+          <button  className="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded shadow-md transition-all duration-300">
             Shop Now
           </button>
         </div>
