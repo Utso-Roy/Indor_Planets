@@ -5,65 +5,69 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
+import { updateProfile } from "firebase/auth"; 
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword(!showPassword);
-  const {signUp, setUser} = useContext(AuthContext)
+  const { signUp, setUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-
-
   const onSubmit = async (data) => {
-  const email = data.email;
-  const password = data.password;
-  const username = data.username;
-  const imageFile = data.profileImage[0];
+    const email = data.email;
+    const password = data.password;
+    const username = data.username;
+    const imageFile = data.profileImage[0];
 
-  const formData = new FormData();
-  formData.append("image", imageFile);
+    const formData = new FormData();
+    formData.append("image", imageFile);
 
-  try {
-    const res = await fetch(
-      `https://api.imgbb.com/1/upload?key=f3e962a8a0a96e0fed778a75628796dc`,
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
+    try {
+      const res = await fetch(
+        `https://api.imgbb.com/1/upload?key=f3e962a8a0a96e0fed778a75628796dc`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
-    const imgResult = await res.json();
+      const imgResult = await res.json();
 
-    if (imgResult.success) {
-      const imageUrl = imgResult.data.url;
+      if (imgResult.success) {
+        const imageUrl = imgResult.data.url;
 
-      signUp(email, password)
-        .then((result) => {
-          const loggedUser = result.user;
+        signUp(email, password)
+          .then(async (result) => {
+            const loggedUser = result.user;
 
-          setUser({
-            ...loggedUser,
-            displayName: username,
-            photoURL: imageUrl,
+           
+            await updateProfile(loggedUser, {
+              displayName: username,
+              photoURL: imageUrl,
+            });
+
+            setUser({
+              ...loggedUser,
+              displayName: username,
+              photoURL: imageUrl,
+            });
+
+            toast.success("Registration successful");
+          })
+          .catch((error) => {
+            toast.error("Sign up error: " + error.message);
           });
-
-          toast.success("Registration successful");
-        })
-        .catch((error) => {
-         toast.error("Sign up error:", error.message);
-        });
-    } else {
-      console.error("Image upload failed");
+      } else {
+        toast.error("Image upload failed");
+      }
+    } catch (err) {
+      toast.error("Something went wrong: " + err.message);
     }
-  } catch (err) {
-    console.error("Something went wrong:", err.message);
-  }
-};
-
+  };
 
   return (
     <div className="min-h-screen p-4 bg-base-300 flex justify-center items-center px-4">

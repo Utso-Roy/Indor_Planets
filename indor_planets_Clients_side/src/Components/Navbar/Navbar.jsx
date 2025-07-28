@@ -1,63 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../assets/logo.png";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../../Context/AuthContext";
+import NavLinks from "./NavLinks";
+import { MdEmail, MdMarkEmailUnread } from "react-icons/md";
+import { FaTachometerAlt, FaSignOutAlt } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
-  const links = (
-    <>
-      <li>
-        <NavLink
-          to="/home"
-          className={({ isActive }) =>
-            isActive
-              ? "text-green-600 underline font-bold"
-              : "text-green-500"
-          }
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/learn"
-          className={({ isActive }) =>
-            isActive
-              ? "text-green-600 underline font-bold"
-              : "text-green-500"
-          }
-        >
-          Learn
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/plantCare"
-          className={({ isActive }) =>
-            isActive
-              ? "text-green-600 underline font-bold"
-              : "text-green-500"
-          }
-        >
-          Plant Care
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/plantFertilizer"
-          className={({ isActive }) =>
-            isActive
-              ? "text-green-600 underline font-bold"
-              : "text-green-500"
-          }
-        >
-          Plant Fertilizer
-        </NavLink>
-      </li>
-    </>
-  );
+  const { user, logOut, setUser } = useContext(AuthContext);
+  console.log(user);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        setUser(null);
+        toast.success("Logged out successfully");
+      })
+      .catch((error) => {
+        toast.error("Logout failed: " + error.message);
+      });
+  };
 
   return (
     <>
+      {/* Top Banner */}
       <div className="bg-green-700 text-white text-sm">
         <div className="flex flex-col md:flex-row justify-around items-center h-auto md:h-[45px] px-4 py-2 gap-2 md:gap-0 text-center">
           <h3>Free Delivery Above ₹999 | Shop Now</h3>
@@ -68,13 +35,18 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/*  Sticky Navbar */}
+      {/* Navbar */}
       <div className="sticky top-0 z-50 bg-[#F5F5F5] shadow-sm">
         <div className="navbar">
+          {/* Navbar Start (Mobile + Logo) */}
           <div className="navbar-start">
-            {/* Mobile Dropdown */}
+            {/* Mobile Menu */}
             <div className="dropdown">
-              <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost lg:hidden"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -82,14 +54,19 @@ const Navbar = () => {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
                 </svg>
               </div>
               <ul
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
               >
-                {links}
+                <NavLinks />
               </ul>
             </div>
 
@@ -103,35 +80,84 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Desktop Menu */}
+          {/* Navbar Center (Desktop Menu) */}
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{links}</ul>
+            <ul className="menu menu-horizontal px-1">
+              <NavLinks />
+            </ul>
           </div>
 
-          {/* Right Side Button */}
+          {/* Navbar End (User Section) */}
           <div className="navbar-end gap-2">
-            
-             <NavLink
-          to="/login"
-          className={({ isActive }) =>
-            isActive
-              ? "text-green-600  font-bold"
-              : "text-green-500"
-          }
-        >
-         <button className="cursor-pointer">Login</button>
-        </NavLink>
-            <span className="text-green-500">\</span>
-             <NavLink
-          to="/register"
-          className={({ isActive }) =>
-            isActive
-              ? "text-green-600  font-bold"
-              : "text-green-500"
-          }
-        >
-          <button className="cursor-pointer"> Register</button>
-        </NavLink>
+            {user ? (
+              <div className="dropdown cursor-pointer  dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar tooltip"
+                  data-tip={user?.displayName || "User"}
+                >
+                  <div className="w-10 rounded-full ring ring-success ring-offset-base-100 ring-offset-2">
+                    <img
+                      src={
+                        user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"
+                      }
+                      alt="user"
+                    />
+                  </div>
+                </div>
+
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-64"
+                >
+                  <li className="text-sm text-gray-600 px-2 py-1 flex gap-2">
+                    <MdMarkEmailUnread size={20} />
+                    {user?.email || "No email found"}
+                  </li>
+
+                  <li>
+                    <Link
+                      to="/dashboard"
+                      className="flex items-center gap-2 font-semibold"
+                    >
+                      <FaTachometerAlt className="text-green-500" />
+                      Dashboard
+                    </Link>
+                  </li>
+
+                  <li>
+                    <button
+                      onClick={handleLogOut}
+                      className="flex items-center gap-2 text-red-500"
+                    >
+                      <FaSignOutAlt />
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <>
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) =>
+                    isActive ? "text-green-600 font-bold" : "text-green-500"
+                  }
+                >
+                  <button className="cursor-pointer">Login</button>
+                </NavLink>
+                <span className="text-green-500">/</span>
+                <NavLink
+                  to="/register"
+                  className={({ isActive }) =>
+                    isActive ? "text-green-600 font-bold" : "text-green-500"
+                  }
+                >
+                  <button className="cursor-pointer">Register</button>
+                </NavLink>
+              </>
+            )}
           </div>
         </div>
       </div>
