@@ -21,13 +21,14 @@ const AuthProvider = ({ children }) => {
   }, []);
     
     
-    
+    console.log(user)
     
     
     const authInfo = {
         user,
         loading,
-        signUp 
+      signUp,
+        setUser
     }
     
     return (

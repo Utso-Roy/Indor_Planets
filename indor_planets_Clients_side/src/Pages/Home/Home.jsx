@@ -2,14 +2,16 @@ import React, {  useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import plantImg from '../../assets/Home section.png';
+import { useNavigate } from 'react-router';
 
 const Home = () => {
+  const navigate = useNavigate()
   
   useEffect(() => {
     AOS.init();
   }, []);
   return (
-      <main>
+      <main className=''>
           
           <div className="min-h-screen bg-gradient-to-r from-green-100 via-lime-100 to-green-100 flex items-center justify-center px-6 py-1">
       <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
@@ -26,7 +28,8 @@ const Home = () => {
           <p className="text-lg md:text-xl text-green-800 mb-6">
             Discover our exclusive collection of air-purifying indoor plants to refresh your space.
           </p>
-          <button  className="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded shadow-md transition-all duration-300">
+          <button onClick={() => navigate("/")}
+ className="bg-green-700 hover:bg-green-800 cursor-pointer text-white px-6 py-3 rounded shadow-md transition-all duration-300">
             Shop Now
           </button>
         </div>
