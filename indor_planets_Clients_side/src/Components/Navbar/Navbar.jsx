@@ -23,8 +23,6 @@ const Navbar = () => {
 
   return (
     <>
-       
-      
       {/* Top Banner */}
       <div className="bg-green-700 text-white text-sm">
         <div className="flex flex-col md:flex-row justify-around items-center h-auto md:h-[45px] px-4 py-2 gap-2 md:gap-0 text-center">
@@ -65,7 +63,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content cursor-target   bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
               >
                 <NavLinks />
               </ul>
@@ -92,57 +90,60 @@ const Navbar = () => {
           <div className="navbar-end gap-2">
             {user ? (
               <div className="dropdown dropdown-hover dropdown-end cursor-pointer">
-  <button
-    className="btn btn-ghost cursor-target btn-circle avatar tooltip"
-    data-tip={user?.displayName || "User"}
-  >
-    <div className="w-10 rounded-full ring ring-success ring-offset-base-100 ring-offset-2">
-      <img
-        src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
-        alt="user"
-      />
-    </div>
-  </button>
+                <button
+                  className="btn btn-ghost cursor-target btn-circle avatar tooltip"
+                  data-tip={user?.displayName || "User"}
+                >
+                  <div className="w-10 rounded-full ring ring-success ring-offset-base-100 ring-offset-2">
+                    <img
+                      src={
+                        user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"
+                      }
+                      alt="user"
+                    />
+                  </div>
+                </button>
 
-  <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-64">
-    <li className="text-sm text-gray-600 px-2 py-1 flex gap-2">
-      <MdMarkEmailUnread size={20} />
-      {user?.email || "No email found"}
-    </li>
+                <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-64">
+                  <li className="text-sm text-gray-600 px-2 py-1 flex gap-2">
+                    <MdMarkEmailUnread size={20} />
+                    {user?.email || "No email found"}
+                  </li>
 
-    <li>
+                  <li>
                     <button className="cursor-target">
                       <Link
-        to="/dashboard"
-        className="flex items-center text-green-600 gap-2 font-semibold"
-      >
-        <MdDashboard color="green" />
-        Dashboard
-      </Link>
-      </button>
-    </li>
+                        to="/dashboard"
+                        className="flex items-center text-green-600 gap-2 font-semibold"
+                      >
+                        <MdDashboard color="green" />
+                        Dashboard
+                      </Link>
+                    </button>
+                  </li>
 
-    <li>
-      <button
-        onClick={handleLogOut}
-        className="flex cursor-target items-center gap-2 text-red-500"
-      >
-        <FaSignOutAlt />
-        Logout
-      </button>
-    </li>
-  </ul>
-</div>
-
+                  <li>
+                    <button
+                      onClick={handleLogOut}
+                      className="flex cursor-target items-center gap-2 text-red-500"
+                    >
+                      <FaSignOutAlt />
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
             ) : (
               <>
                 <NavLink
                   to="/login"
                   className={({ isActive }) =>
-                    isActive ? "text-green-600 font-bold" : "text-green-500"
+                    isActive ? "text-green-600  font-bold" : "text-green-500"
                   }
                 >
-                  <button className="cursor-pointer">Login</button>
+                  <button className="cursor-pointer cursor-target">
+                    Login
+                  </button>
                 </NavLink>
                 <span className="text-green-500">/</span>
                 <NavLink
@@ -151,7 +152,7 @@ const Navbar = () => {
                     isActive ? "text-green-600 font-bold" : "text-green-500"
                   }
                 >
-                  <button className="cursor-pointer">Register</button>
+                  <button className="cursor-pointer ">Register</button>
                 </NavLink>
               </>
             )}

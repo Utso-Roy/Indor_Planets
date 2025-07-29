@@ -41,7 +41,7 @@ const Login = () => {
                 <label className="label">Email</label>
                 <input
                   type="email"
-                  className="input input-bordered w-full"
+                  className="input cursor-target input-bordered w-full"
                   placeholder="Enter your email"
                   {...register("email", {
                     required: "Email is required",
@@ -60,7 +60,7 @@ const Login = () => {
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
-                    className="input input-bordered w-full pr-10"
+                    className="input cursor-target input-bordered w-full pr-10"
                     placeholder="Enter your password"
                     {...register("password", {
                         required: "Password is required",
@@ -89,13 +89,13 @@ const Login = () => {
 
               {/* Forgot password */}
               <div className="text-right">
-                <a className="link link-hover text-sm text-green-600">
+                <a className="link link-hover cursor-target text-sm text-green-600">
                   Forgot password?
                 </a>
               </div>
 
               {/* Login Button */}
-              <button className="btn bg-green-500 w-full text-white">
+              <button className="btn bg-green-500 cursor-target w-full text-white">
                 Login
               </button>
             </form>

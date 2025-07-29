@@ -51,7 +51,7 @@ const Learn = () => {
             key={idx}
             data-aos="zoom-in-up"
             data-aos-delay={idx * 100}
-            className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl transition duration-300 text-center border border-green-100"
+            className="bg-white p-8 cursor-target rounded-2xl shadow-md hover:shadow-2xl transition duration-300 text-center border border-green-100"
           >
             <div className="flex justify-center">{topic.icon}</div>
             <h3 className="text-xl font-semibold text-green-600 mb-2 mt-3">{topic.title}</h3>

@@ -58,7 +58,7 @@ const PlantCare = () => {
             key={idx}
             data-aos="fade-up"
             data-aos-delay={idx * 100}
-            className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition"
+            className="bg-white cursor-target rounded-xl shadow-md p-6 hover:shadow-xl transition"
           >
             <div className="mb-4">{item.icon}</div>
             <h3 className="text-xl font-semibold text-green-600 mb-2">{item.title}</h3>

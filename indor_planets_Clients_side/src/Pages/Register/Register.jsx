@@ -93,7 +93,7 @@ const Register = () => {
                 <label className="label">User Name</label>
                 <input
                   type="text"
-                  className="input input-bordered w-full"
+                  className="input cursor-target input-bordered w-full"
                   placeholder="Enter your user name"
                   {...register("username", {
                     required: "User Name is required",
@@ -107,7 +107,7 @@ const Register = () => {
                 <label className="label">Email</label>
                 <input
                   type="email"
-                  className="input input-bordered w-full"
+                  className="input cursor-target input-bordered w-full"
                   placeholder="Enter your email"
                   {...register("email", {
                     required: "Email is required",
@@ -126,7 +126,7 @@ const Register = () => {
                 <input
                   type="file"
                   accept="image/*"
-                  className="file-input file-input-bordered w-full"
+                  className="file-input cursor-target file-input-bordered w-full"
                   {...register("profileImage", {
                     required: "Image is required",
                   })}
@@ -140,7 +140,7 @@ const Register = () => {
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
-                    className="input input-bordered w-full pr-10"
+                    className="input cursor-target input-bordered w-full pr-10"
                     placeholder="Enter your password"
                     {...register("password", {
                       required: "Password is required",
@@ -169,7 +169,7 @@ const Register = () => {
               {/* Submit */}
               <button
                 type="submit"
-                className="btn bg-green-500 w-full text-white"
+                className="btn cursor-target bg-green-500 w-full text-white"
               >
                 Register
               </button>
