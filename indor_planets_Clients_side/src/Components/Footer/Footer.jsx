@@ -26,16 +26,16 @@ const Footer = () => {
   </aside>
   <nav>
     <div className="grid grid-flow-col gap-4">
-      <a>
+      <button className='cursor-target'>
         <FaFacebookSquare size={28}/>
 
-      </a>
-      <a>
+      </button>
+      <button className='cursor-target'>
        <FaTwitterSquare  size={28}/>
-      </a>
-            <a>
+      </button>
+            <button className='cursor-target'>
               <FaInstagramSquare size={28} />
-      </a>
+      </button>
     </div>
   </nav>
 </footer>

@@ -29,7 +29,7 @@ const Home = () => {
             Discover our exclusive collection of air-purifying indoor plants to refresh your space.
           </p>
           <button onClick={() => navigate("/")}
- className="bg-green-700 hover:bg-green-800 cursor-pointer text-white px-6 py-3 rounded shadow-md transition-all duration-300">
+ className="bg-green-700 cursor-target hover:bg-green-800 cursor-pointer text-white px-6 py-3 rounded shadow-md transition-all duration-300">
             Shop Now
           </button>
         </div>
