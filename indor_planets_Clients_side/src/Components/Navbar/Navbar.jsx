@@ -3,7 +3,7 @@ import logo from "../../assets/logo.png";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import NavLinks from "./NavLinks";
-import { MdEmail, MdMarkEmailUnread } from "react-icons/md";
+import { MdDashboard, MdMarkEmailUnread } from "react-icons/md";
 import { FaTachometerAlt, FaSignOutAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 
@@ -112,7 +112,8 @@ const Navbar = () => {
                   className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-64"
                 >
                   <li className="text-sm text-gray-600 px-2 py-1 flex gap-2">
-                    <MdMarkEmailUnread size={20} />
+                    <MdMarkEmailUnread
+                      size={20} />
                     {user?.email || "No email found"}
                   </li>
 
@@ -121,7 +122,7 @@ const Navbar = () => {
                       to="/dashboard"
                       className="flex items-center gap-2 font-semibold"
                     >
-                      <FaTachometerAlt className="text-green-500" />
+                      <MdDashboard  color="green"/>
                       Dashboard
                     </Link>
                   </li>
