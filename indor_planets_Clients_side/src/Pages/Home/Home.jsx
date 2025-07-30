@@ -7,6 +7,9 @@ import Section1 from "../../Components/section1/Section1";
 const Home = () => {
   const navigate = useNavigate();
 
+
+
+
   useEffect(() => {
     AOS.init();
   }, []);
@@ -31,7 +34,7 @@ const Home = () => {
               to refresh your space.
             </p>
             <button
-              onClick={() => navigate("/")}
+              onClick={()=> navigate('/')}
               className="bg-green-700 cursor-target hover:bg-green-800 cursor-pointer text-white px-6 py-3 rounded shadow-md transition-all duration-300"
             >
               Shop Now
