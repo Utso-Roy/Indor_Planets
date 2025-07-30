@@ -6,9 +6,10 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router";
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
-  const { signIn, setUser } = useContext(AuthContext);
+  const { signIn, setUser, googleLogin } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword(!showPassword);
   const location = useLocation();
@@ -33,6 +34,20 @@ const Login = () => {
       .catch((error) => {
         toast.error("Login failed");
         console.log(error);
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((data) => {
+        setUser(data.user);
+        navigate(from, { replace: true });
+
+        toast.success("Google Login Successfully");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        toast.error("Google Login Failed");
       });
   };
 
@@ -118,6 +133,13 @@ const Login = () => {
                 Login
               </button>
             </form>
+            <button
+              onClick={handleGoogleLogin}
+              className="btn bg-green-500 cursor-target  my-3 w-full text-white"
+            >
+              <FaGoogle />
+              Google Login
+            </button>
           </div>
         </div>
       </div>

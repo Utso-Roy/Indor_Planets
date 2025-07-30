@@ -6,11 +6,13 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
 import { updateProfile } from "firebase/auth"; 
+import { useNavigate } from "react-router";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword(!showPassword);
   const { signUp, setUser } = useContext(AuthContext);
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -57,6 +59,7 @@ const Register = () => {
             });
 
             toast.success("Registration successful");
+            navigate('/')
           })
           .catch((error) => {
             toast.error("Sign up error: " + error.message);
