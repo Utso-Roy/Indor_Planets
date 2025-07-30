@@ -5,11 +5,17 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
+import { useLocation, useNavigate } from "react-router";
 
 const Login = () => {
-  const {signIn,setUser} = useContext(AuthContext)
+  const { signIn, setUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword(!showPassword);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || "/";
+
   const {
     register,
     handleSubmit,
@@ -17,17 +23,17 @@ const Login = () => {
   } = useForm();
 
   const onsubmit = (data) => {
-    const { email, password } = data  
+    const { email, password } = data;
     signIn(email, password)
-      .then(data => {
-        setUser(data.user)
-        toast.success('Login Successfully')
+      .then((data) => {
+        setUser(data.user);
+        toast.success("Login Successfully");
+        navigate(from, { replace: true });
       })
-      .catch(error => {
-        toast.error('Login failed')
-      console.log(error)
-    })
-    
+      .catch((error) => {
+        toast.error("Login failed");
+        console.log(error);
+      });
   };
 
   return (
@@ -76,8 +82,8 @@ const Login = () => {
                     className="input cursor-target input-bordered w-full pr-10"
                     placeholder="Enter your password"
                     {...register("password", {
-                        required: "Password is required",
-                          minLength: {
+                      required: "Password is required",
+                      minLength: {
                         value: 6,
                         message: "Password must be at least 6 characters",
                       },

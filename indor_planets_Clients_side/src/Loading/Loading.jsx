@@ -3,7 +3,7 @@ import { GridLoader } from 'react-spinners';
 
 const Loading = () => {
     return (
-        <div className='block mx-auto'>
+        <div className='flex justify-center items-center h-screen'>
             <GridLoader color='green' />
         </div>
     );

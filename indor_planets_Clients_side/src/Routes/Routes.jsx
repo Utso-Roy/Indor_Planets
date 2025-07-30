@@ -8,6 +8,7 @@ import Register from "../Pages/Register/Register";
 import Learn from "../Pages/Learn/Learn";
 import PlantCare from "../Pages/PlantCare/PlantCare";
 import Fertilizer from "../Pages/Fertilizer/Fertilizer";
+import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
 
       {
         path: '/home',
-        element : <Home></Home>
+        element : <PrivateRoute>  <Home></Home></PrivateRoute>
       }
       ,
       {
@@ -37,17 +38,17 @@ const router = createBrowserRouter([
       ,
       {
         path: '/learn',
-        element : <Learn></Learn>
+        element : <PrivateRoute><Learn></Learn> </PrivateRoute>
       }
       ,
       {
         path: '/plantCare',
-        element : <PlantCare></PlantCare>
+        element : <PrivateRoute><PlantCare></PlantCare> </PrivateRoute>
       }
       ,
       {
         path: '/plantFertilizer',
-        element : <Fertilizer></Fertilizer>
+        element : <PrivateRoute><Fertilizer></Fertilizer> </PrivateRoute>
       }
       
   ]
