@@ -2,10 +2,10 @@ import React from 'react';
 import FlowingMenu from './../../../FlowingMenu/FlowingMenu'
 const Section1 = () => {
     const demoItems = [
-  { link: '#', text: 'Mojave', image: 'https://picsum.photos/600/400?random=1' },
-  { link: '#', text: 'Sonoma', image: 'https://picsum.photos/600/400?random=2' },
-  { link: '#', text: 'Monterey', image: 'https://picsum.photos/600/400?random=3' },
-  { link: '#', text: 'Sequoia', image: 'https://picsum.photos/600/400?random=4' }
+  { link: '#', text: 'Air Purifying Plants', image: 'https://i.ibb.co/tpSJXGXT/indor-9.jpg' },
+  { link: '#', text: 'Succulents & Cacti', image: 'https://i.ibb.co/DH90Xj8y/indor-10.jpg' },
+  { link: '#', text: 'Foliage Plants', image: 'https://i.ibb.co/1f396dYS/indor-11.jpg' },
+  { link: '#', text: 'Flowering Indoor Plants', image: 'https://i.ibb.co/fK96NHh/indor-planets-111.jpg' }
 ];
 
     return (

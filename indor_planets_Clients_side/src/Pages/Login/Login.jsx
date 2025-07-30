@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Lottie from "lottie-react";
 import animationData from "../../assets/login.json";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const {signIn,setUser} = useContext(AuthContext)
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword(!showPassword);
   const {
@@ -14,7 +17,17 @@ const Login = () => {
   } = useForm();
 
   const onsubmit = (data) => {
-    console.log(data);
+    const { email, password } = data  
+    signIn(email, password)
+      .then(data => {
+        setUser(data.user)
+        toast.success('Login Successfully')
+      })
+      .catch(error => {
+        toast.error('Login failed')
+      console.log(error)
+    })
+    
   };
 
   return (
