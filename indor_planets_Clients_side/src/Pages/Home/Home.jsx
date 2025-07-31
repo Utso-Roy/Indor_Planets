@@ -4,6 +4,8 @@ import "aos/dist/aos.css";
 import plantImg from "../../assets/Home section.png";
 import { useNavigate } from "react-router";
 import Section1 from "../../Components/section1/Section1";
+import GradientText from "../../Components/GradientText/GradientText";
+import Section2 from "../../Components/Section2/Section2";
 const Home = () => {
   const navigate = useNavigate();
 
@@ -26,7 +28,7 @@ const Home = () => {
             <p className="text-sm uppercase tracking-widest text-green-600">
               Fresh • Natural • Green Living
             </p>
-            <h1 className="text-4xl md:text-5xl font-bold text-green-900 mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-green-800 mb-4">
               Bring Nature Inside Your Home
             </h1>
             <p className="text-lg md:text-xl text-green-800 mb-6">
@@ -56,10 +58,30 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <section>
+              
 
+        <h2 className="text-center  text-[2rem] my-3">
+           
+<GradientText
+  colors={["#4ade80", "#bef264", "#4ade80", ]}
+  animationSpeed={3}
+  showBorder={false}
+  className="custom-class"
+>
+  New Arrival Products
+</GradientText>
+        </h2>
+        <div >
+                  <Section2></Section2>
+
+        </div>
+
+      </section>
       <section className="bg-green-600 cursor-target">
         <Section1></Section1>
       </section>
+      
       
     </main>
   );

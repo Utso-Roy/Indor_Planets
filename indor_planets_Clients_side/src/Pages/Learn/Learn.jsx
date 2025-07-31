@@ -32,7 +32,7 @@ const Learn = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-100 to-green-50 px-4 py-16">
+    <div className="min-h-screen bg-base-200 px-4 py-16">
       
       {/* Header Section */}
       <div className="text-center mb-14 max-w-3xl mx-auto px-4">

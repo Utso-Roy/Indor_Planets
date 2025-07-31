@@ -42,7 +42,7 @@ const PlantCare = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-green-50 px-4 py-10">
+    <div className="min-h-screen bg-base-200 px-4 py-10">
       {/* Hero Section */}
       <div className="text-center mb-10 max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold text-green-700 mb-2">Indoor Plant Care Tips</h1>
