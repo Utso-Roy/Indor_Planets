@@ -31,17 +31,17 @@ const Fertilizer = () => {
           />
           <div className="p-4">
             <h2 className="font-bold text-green-400 mb-2">{fertilizer?.name}</h2>
-            <div className="text-green-400 font-bold mb-3">
+            <div className="text-green-300 font-semibold mb-3">
               Price: ${fertilizer?.price}
             </div>
                   <div className='flex gap-1 '>
                       
                       
-            <button className="bg-green-400 cursor-pointer  cursor-target text-white px-3 py-1 text-sm rounded">
+            <button className="bg-gradient-to-r from-green-400 to-green-500 cursor-pointer  cursor-target text-white px-3 py-1 text-sm rounded">
               Buy Now
             </button>
                       
-            <button className="bg-green-400 cursor-pointer cursor-target text-white px-3 py-1 text-sm rounded">
+            <button className="bg-gradient-to-r from-green-400 to-green-500 cursor-pointer cursor-target text-white px-3 py-1 text-sm rounded">
              Details
             </button>
 </div>
