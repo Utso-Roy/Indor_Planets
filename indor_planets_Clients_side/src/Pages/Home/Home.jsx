@@ -7,6 +7,7 @@ import Section1 from "../../Components/section1/Section1";
 import GradientText from "../../Components/GradientText/GradientText";
 import Section2 from "../../Components/Section2/Section2";
 import ReviewSection from "../../Components/Review/ReviewSection";
+import Section3 from "../../Components/Section/Section3";
 const Home = () => {
   const navigate = useNavigate();
 
@@ -64,11 +65,26 @@ const Home = () => {
             showBorder={false}
             className="custom-class"
           >
-            New Arrival Products
+            New Arrival Plants
           </GradientText>
         </h2>
         <div>
           <Section2></Section2>
+        </div>
+      </section>
+      <section>
+        <h2 className="text-center  text-[2rem] my-3">
+          <GradientText
+            colors={["#4ade80", "#bef264", "#4ade80"]}
+            animationSpeed={3}
+            showBorder={false}
+            className="custom-class"
+          >
+           Best Selling Plants
+          </GradientText>
+        </h2>
+        <div>
+          <Section3></Section3>
         </div>
       </section>
       <section>

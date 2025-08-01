@@ -27,13 +27,13 @@ const cardVariants: Variants = {
 
 const Loading = () => <div className="text-center py-10">Loading...</div>;
 
-const Section2 = () => {
+const Section3 = () => {
   const [newData, setNewData] = useState<Plant[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axiosInstance
-      .get("/newArrivalCards")
+      .get("/bestSellerCards")
       .then((res) => setNewData(res.data))
       .catch((err) => console.error("Error fetching:", err))
       .finally(() => setLoading(false));
@@ -44,7 +44,7 @@ const Section2 = () => {
   if (loading) return <Loading />;
 
   if (sliceData.length === 0)
-    return <p className="text-center mt-10">No new arrivals found.</p>;
+    return <p className="text-center mt-10">Products Not Found.</p>;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -77,4 +77,4 @@ const Section2 = () => {
   );
 };
 
-export default Section2;
+export default Section3;
