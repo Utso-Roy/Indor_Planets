@@ -15,7 +15,7 @@ const CareGuides = () => {
           initial={{ opacity: 0, x: -60 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 2 }}
         >
           <img
             src="https://i.ibb.co/XfTG95wd/233-I-have-a-house-plant4-1024x700.jpg" 
