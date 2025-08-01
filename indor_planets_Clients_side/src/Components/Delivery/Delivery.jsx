@@ -55,7 +55,7 @@ const Delivery = () => {
 
       {/* Delivery Partners */}
       <div className="mt-10 text-center">
-         <h2 className="text-center  text-[2rem] my-3">
+         <h2 className="text-center  text-[1.20rem] my-3">
           <GradientText
             colors={["#4ade80", "#bef264", "#4ade80"]}
             animationSpeed={3}
