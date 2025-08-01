@@ -6,11 +6,9 @@ import { useNavigate } from "react-router";
 import Section1 from "../../Components/section1/Section1";
 import GradientText from "../../Components/GradientText/GradientText";
 import Section2 from "../../Components/Section2/Section2";
+import ReviewSection from "../../Components/Review/ReviewSection";
 const Home = () => {
   const navigate = useNavigate();
-
-
-
 
   useEffect(() => {
     AOS.init();
@@ -36,7 +34,7 @@ const Home = () => {
               to refresh your space.
             </p>
             <button
-              onClick={()=> navigate('/')}
+              onClick={() => navigate("/")}
               className="bg-green-700 cursor-target hover:bg-green-800 cursor-pointer text-white px-6 py-3 rounded shadow-md transition-all duration-300"
             >
               Shop Now
@@ -59,30 +57,39 @@ const Home = () => {
         </div>
       </div>
       <section>
-              
-
         <h2 className="text-center  text-[2rem] my-3">
-           
-<GradientText
-  colors={["#4ade80", "#bef264", "#4ade80", ]}
-  animationSpeed={3}
-  showBorder={false}
-  className="custom-class"
->
-  New Arrival Products
-</GradientText>
+          <GradientText
+            colors={["#4ade80", "#bef264", "#4ade80"]}
+            animationSpeed={3}
+            showBorder={false}
+            className="custom-class"
+          >
+            New Arrival Products
+          </GradientText>
         </h2>
-        <div >
-                  <Section2></Section2>
-
+        <div>
+          <Section2></Section2>
         </div>
+      </section>
+      <section>
+        <h2 className="text-center  text-[2rem] my-3">
+          <GradientText
+            colors={["#4ade80", "#bef264", "#4ade80"]}
+            animationSpeed={3}
+            showBorder={false}
+            className="custom-class"
+          >
+            Plants Category
+          </GradientText>
+        </h2>
+        <div  className="bg-green-600 cursor-target">
+           <Section1></Section1>
+       </div>
+      </section>
+      <section>
 
+        <ReviewSection></ReviewSection>
       </section>
-      <section className="bg-green-600 cursor-target">
-        <Section1></Section1>
-      </section>
-      
-      
     </main>
   );
 };
