@@ -77,7 +77,7 @@ const Delivery = () => {
             Our Delivery Promise
           </GradientText>
         </h2>
-        <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+        <p className="text-green-500 text-lg max-w-2xl mx-auto">
           We deliver your beloved plants safely and quickly to your home.
         </p>
       </div>
@@ -91,7 +91,7 @@ const Delivery = () => {
               className="flex items-center cursor-pointer gap-3 min-w-max mx-8 text-gray-800 font-medium"
             >
               {feature.icon}
-              <span className="whitespace-nowrap">{feature.text}</span>
+              <span className="whitespace-nowrap text-green-700">{feature.text}</span>
             </div>
           ))}
           {deliveryFeatures.map((feature, index) => (
@@ -111,26 +111,26 @@ const Delivery = () => {
           <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
             <Clock className="text-green-600" size={32} />
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">1-2 Days</h3>
-          <p className="text-gray-600">Delivery within Dhaka</p>
+          <h3 className="text-2xl font-bold text-green-700 mb-2">1-2 Days</h3>
+          <p className="text-green-500">Delivery within Dhaka</p>
         </div>
 
         <div className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300">
           <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
             <MapPin className="text-blue-600" size={32} />
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">
+          <h3 className="text-2xl font-bold text-green-700 mb-2">
             64 Districts
           </h3>
-          <p className="text-gray-600">Service Across Bangladesh</p>
+          <p className="text-green-500">Service Across Bangladesh</p>
         </div>
 
         <div className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300">
           <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
             <CheckCircle className="text-purple-600" size={32} />
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">98%</h3>
-          <p className="text-gray-600">Successful Delivery Rate</p>
+          <h3 className="text-2xl font-bold text-green-700 mb-2">98%</h3>
+          <p className="text-green-500">Successful Delivery Rate</p>
         </div>
       </div>
 
@@ -156,10 +156,10 @@ const Delivery = () => {
               <div className="text-green-600 group-hover:text-green-700 transition-colors mb-4 flex justify-center">
                 {partner.icon}
               </div>
-              <h4 className="font-semibold text-gray-900 mb-2 text-lg">
+              <h4 className="font-semibold text-green-700 mb-2 text-lg">
                 {partner.name}
               </h4>
-              <p className="text-gray-600 text-sm">{partner.description}</p>
+              <p className="text-green-500 text-sm">{partner.description}</p>
             </div>
           ))}
         </div>

@@ -73,7 +73,7 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen p-4 bg-base-300 flex justify-center items-center px-4">
+    <div className="min-h-screen  p-4 bg-base-300 flex justify-center items-center px-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl p-6 lg:p-10">
         <div className="bg-gradient-to-t from-green-100 via-lime-100 to-green-50 flex flex-col lg:flex-row items-center overflow-hidden">
           {/* Animation */}
@@ -90,7 +90,7 @@ const Register = () => {
             <h2 className="text-3xl font-bold text-center mb-6 text-green-700">
               Register
             </h2>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={handleSubmit(onSubmit)} className=" space-y-4">
               {/* User Name */}
               <div>
                 <label className="label">User Name</label>
@@ -172,7 +172,7 @@ const Register = () => {
               {/* Submit */}
               <button
                 type="submit"
-                className="btn cursor-target bg-green-500 w-full text-white"
+                className="btn cursor-target  bg-green-500 w-full text-white"
               >
                 Register
               </button>

@@ -152,7 +152,7 @@ const Navbar = () => {
                     isActive ? "text-green-600 font-bold" : "text-green-500"
                   }
                 >
-                  <button className="cursor-pointer ">Register</button>
+                  <button className="cursor-pointer cursor-target ">Register</button>
                 </NavLink>
               </>
             )}
