@@ -91,7 +91,11 @@ const Products = () => {
               </figure>
               <div className="card-body">
                 <h2 className="card-title text-green-500">{product?.name}</h2>
-                <p>{product?.description}</p>
+                <p className="text-green-400 font-semibold text-lg">
+  ৳ {product?.price?.toLocaleString("en-BD")}
+</p>
+
+                <p className='text-green-700'>{product?.description}</p>
               </div>
             </motion.div>
           ))}
