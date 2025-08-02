@@ -11,6 +11,7 @@ import Fertilizer from "../Pages/Fertilizer/Fertilizer";
 import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 import DashboardLayout from "../Layouts/DashboardLayouts/DashboardLayout";
 import Dashboard from "../Pages/Sidebar/Sidebar";
+import ProductsDetails from "../Components/ProductsDetails/ProductsDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -64,6 +65,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/productsDetails/:id",
+        element: (
+          <PrivateRoute>
+            <ProductsDetails></ProductsDetails>{" "}
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 
@@ -71,13 +80,7 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout></DashboardLayout>,
     errorElement: <Error></Error>,
-    // children: [
-    //   {
-    //     index: true,
-    //     element: <Dashboard></Dashboard>,
-    //     path: "/dashboard",
-    //   },
-    // ],
+   
   },
 ]);
 
