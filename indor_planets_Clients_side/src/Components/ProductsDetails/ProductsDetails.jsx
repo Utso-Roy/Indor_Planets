@@ -4,6 +4,7 @@ import axiosInstance from "../../Utils/axiosInstance";
 import Loading from "../../Loading/Loading";
 import { toast } from "react-toastify";
 import { FaArrowLeft } from "react-icons/fa";
+
 const ProductsDetails = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
@@ -14,6 +15,7 @@ const ProductsDetails = () => {
   const [showReportModal, setShowReportModal] = useState(false);
   const [showBuyModal, setShowBuyModal] = useState(false);
   const [showReviewModal, setShowReviewModal] = useState(false);
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     axiosInstance
@@ -66,7 +68,7 @@ const ProductsDetails = () => {
               {filterData?.price?.toLocaleString("en-BD")}
             </div>
             <div>
-              <strong className="text-green-700" >Light :</strong> {filterData?.light}
+              <strong className="text-green-700">Light :</strong> {filterData?.light}
             </div>
             <div>
               <strong className="text-green-700">Water :</strong> {filterData?.water}
@@ -80,7 +82,8 @@ const ProductsDetails = () => {
               {filterData?.airPurifying ? "Yes" : "No"}
             </div>
             <div>
-              <strong className="text-green-700">Category :</strong> {filterData?.category}
+              <strong className="text-green-700">Category :</strong>{" "}
+              {filterData?.category}
             </div>
           </div>
 
@@ -98,7 +101,10 @@ const ProductsDetails = () => {
 
           {/* Total Price */}
           <p className="text-lg font-semibold text-green-600 mb-4">
-            Total : <span className="text-amber-500"> ৳  {(filterData.price * quantity).toLocaleString("en-BD")}</span>
+            Total :{" "}
+            <span className="text-amber-500">
+              ৳ {(filterData.price * quantity).toLocaleString("en-BD")}
+            </span>
           </p>
 
           {/* Buttons */}
@@ -177,7 +183,7 @@ const ProductsDetails = () => {
         </Modal>
       )}
 
-      {/* Review Modal */}
+      {/* Review Modal with Rating */}
       {showReviewModal && (
         <Modal
           title={`Review ${filterData.name}`}
@@ -186,10 +192,35 @@ const ProductsDetails = () => {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              toast.success("Review submitted!");
+              toast.success(`Review submitted with ${rating} star(s)!`);
               setShowReviewModal(false);
+              setRating(0);
             }}
           >
+            <div className="mb-4">
+              <p className="font-medium text-green-700 mb-1">Your Rating:</p>
+              <div className="flex gap-2">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <label key={star}>
+                    <input
+                      type="radio"
+                      name="rating"
+                      value={star}
+                      checked={rating === star}
+                      onChange={() => setRating(star)}
+                      className="hidden"
+                    />
+                    <span
+                      className={`text-2xl cursor-pointer ${
+                        rating >= star ? "text-amber-500" : "text-gray-300"
+                      }`}
+                    >
+                      ★
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
             <textarea
               placeholder="Write your review here..."
               required

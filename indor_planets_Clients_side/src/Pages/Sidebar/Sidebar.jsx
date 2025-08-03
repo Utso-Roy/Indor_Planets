@@ -6,18 +6,18 @@ import { MdRateReview } from "react-icons/md";
 // Combined all menu items for all roles
 const combinedMenu = [
     { name: "Admin Home", icon: <FaHome />, path: "/dashboard" },
-    { name: "Profile", icon: <FaUser />, path: "/dashboard/profile" },
+    { name: "Profile", icon: <FaUser />, path: "/dashboard/admin/profile" },
 
-    { name: "Manage Users", icon: <FaUsers />, path: "/dashboard/users" },
+    { name: "Manage Users", icon: <FaUsers />, path: "/dashboard/admin/users" },
     { name: "Manage Reviews", icon: <FaStar />, path: "/dashboard/manage-reviews" },
   { name: "Manage Reports", icon: <FaFlag />, path: "/dashboard/manage-reports" },
 
     { name: "Seller Home", icon: <FaHome />, path: "/dashboard" },
-    { name: "Profile", icon: <FaUser />, path: "/dashboard/profile" },
+    { name: "Profile", icon: <FaUser />, path: "/dashboard/seller/profile" },
 
-    { name: "Add Product", icon: <FaPlus />, path: "/dashboard/add-product" },
-  { name: "My Products", icon: <FaBox />, path: "/dashboard/products" },
-  { name: "My Store", icon: <FaStore />, path: "/dashboard/store" },
+    { name: "Add Product", icon: <FaPlus />, path: "/dashboard/seller/add-product" },
+  { name: "My Products", icon: <FaBox />, path: "/dashboard/seller/products" },
+  { name: "My Store", icon: <FaStore />, path: "/dashboard/seller/store" },
 
   { name: "User Home", icon: <FaHome />, path: "/dashboard" },
   { name: "Profile", icon: <FaUser />, path: "/dashboard/profile" },
