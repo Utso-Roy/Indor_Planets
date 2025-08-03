@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import axiosInstance from "../../Utils/axiosInstance";
+import { Link } from "react-router";
 
 interface Plant {
   _id: string;
@@ -39,40 +40,58 @@ const BestSellerSection = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  const sliceData = newData.slice(5, 10);
-
   if (loading) return <Loading />;
 
-  if (sliceData.length === 0)
+  if (newData.length === 0)
     return <p className="text-center mt-10">Products Not Found.</p>;
 
-  console.log(newData)
+  console.log(newData);
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-      {sliceData.map(({ _id, name, image, price }) => (
-        <motion.div
-          key={_id}
-          className="bg-white rounded-lg cursor-target shadow-md overflow-hidden cursor-pointer"
-          initial="offscreen"
-          whileInView="onscreen"
-          viewport={{ once: true, amount: 0.6 }}
-          variants={cardVariants}
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 300 }}
-        >
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-48 object-cover"
-            loading="lazy"
-          />
-          <div className="p-4">
-            <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
-            <p className="text-green-600 font-bold mt-2">
-              ${price !== undefined ? price.toFixed(2) : "N/A"}
-            </p>
-          </div>
-        </motion.div>
+      {newData.map(({ _id, name, image, rating, price }) => (
+        <Link to={`/productsDetails/${_id}`}>
+          <motion.div
+            key={_id}
+            className="bg-white rounded-lg cursor-target shadow-md overflow-hidden cursor-pointer"
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.6 }}
+            variants={cardVariants}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <img
+              src={image}
+              alt={name}
+              className="w-full h-48 object-cover"
+              loading="lazy"
+            />
+            <div className="p-4">
+              <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
+              <p className="text-green-600 font-bold mt-2">
+                ${price !== undefined ? price.toFixed(2) : "N/A"}
+              </p>
+
+              <div className="flex items-center gap-1 mt-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <span
+                    key={star}
+                    className={
+                      star <= rating
+                        ? "text-yellow-400 text-lg"
+                        : "text-gray-300 text-lg"
+                    }
+                  >
+                    ★
+                  </span>
+                ))}
+                <span className="ml-1 text-sm text-green-600 font-medium">
+                  {rating.toFixed(1)} / 5
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        </Link>
       ))}
     </div>
   );

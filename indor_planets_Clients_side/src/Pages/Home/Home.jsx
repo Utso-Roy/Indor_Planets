@@ -5,11 +5,11 @@ import plantImg from "../../assets/Home section.png";
 import { useNavigate } from "react-router";
 import Section1 from "../../Components/section1/Section1";
 import GradientText from "../../Components/GradientText/GradientText";
-import Section2 from "../../Components/Section2/Section2";
 import ReviewSection from "../../Components/Review/ReviewSection";
 import CareGuides from "../../Components/CareGuides/CareGuides";
 import Delivery from "../../Components/Delivery/Delivery";
 import BestSellerSection from "../../Components/BestSellerSection/BestSellerSection";
+import NewArrivalSection from "../../Components/NewArrivalSection/NewArrivalSection";
 const Home = () => {
   const navigate = useNavigate();
 
@@ -71,7 +71,7 @@ const Home = () => {
           </GradientText>
         </h2>
         <div>
-          <Section2></Section2>
+          <NewArrivalSection></NewArrivalSection>
         </div>
       </section>
       <section>

@@ -12,6 +12,7 @@ import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 import DashboardLayout from "../Layouts/DashboardLayouts/DashboardLayout";
 import Dashboard from "../Pages/Sidebar/Sidebar";
 import ProductsDetails from "../Components/ProductsDetails/ProductsDetails";
+import FertilizerDetails from "../Pages/Fertilizer/FertilizerDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -70,6 +71,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ProductsDetails></ProductsDetails>{" "}
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fertilizerDetails/:id",
+        element: (
+          <PrivateRoute>
+            <FertilizerDetails></FertilizerDetails>{" "}
           </PrivateRoute>
         ),
       },

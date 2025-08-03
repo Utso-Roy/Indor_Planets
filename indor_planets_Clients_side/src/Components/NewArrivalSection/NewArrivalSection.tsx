@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import axiosInstance from "../../Utils/axiosInstance";
+import { Link } from "react-router";
 
 interface Plant {
   _id: string;
@@ -27,7 +28,7 @@ const cardVariants: Variants = {
 
 const Loading = () => <div className="text-center py-10">Loading...</div>;
 
-const Section2 = () => {
+const  NewArrivalSection = () => {
   const [newData, setNewData] = useState<Plant[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -49,7 +50,8 @@ const Section2 = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
       {sliceData.map(({ _id, name, image, price }) => (
-        <motion.div
+        <Link to={`/productsDetails/${_id}`}>
+          <motion.div
           key={_id}
           className="bg-white rounded-lg cursor-target shadow-md overflow-hidden cursor-pointer"
           initial="offscreen"
@@ -72,9 +74,11 @@ const Section2 = () => {
             </p>
           </div>
         </motion.div>
+        
+        </Link>
       ))}
     </div>
   );
 };
 
-export default Section2; 
+export default  NewArrivalSection; 
