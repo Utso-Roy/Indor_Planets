@@ -28,7 +28,7 @@ const cardVariants: Variants = {
 
 const Loading = () => <div className="text-center py-10">Loading...</div>;
 
-const  NewArrivalSection = () => {
+const NewArrivalSection = () => {
   const [newData, setNewData] = useState<Plant[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -50,35 +50,33 @@ const  NewArrivalSection = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
       {sliceData.map(({ _id, name, image, price }) => (
-        <Link to={`/productsDetails/${_id}`}>
+        <Link key={_id} to={`/productsDetails/${_id}`}>
           <motion.div
-          key={_id}
-          className="bg-white rounded-lg cursor-target shadow-md overflow-hidden cursor-pointer"
-          initial="offscreen"
-          whileInView="onscreen"
-          viewport={{ once: true, amount: 0.6 }}
-          variants={cardVariants}
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 300 }}
-        >
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-48 object-cover"
-            loading="lazy"
-          />
-          <div className="p-4">
-            <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
-            <p className="text-green-600 font-bold mt-2">
-              ${price !== undefined ? price.toFixed(2) : "N/A"}
-            </p>
-          </div>
-        </motion.div>
-        
+            className="bg-white rounded-lg cursor-target shadow-md overflow-hidden cursor-pointer"
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.6 }}
+            variants={cardVariants}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <img
+              src={image}
+              alt={name}
+              className="w-full h-48 object-cover"
+              loading="lazy"
+            />
+            <div className="p-4">
+              <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
+              <p className="text-green-600 font-bold mt-2">
+                ${price !== undefined ? price.toFixed(2) : "N/A"}
+              </p>
+            </div>
+          </motion.div>
         </Link>
       ))}
     </div>
   );
 };
 
-export default  NewArrivalSection; 
+export default NewArrivalSection;

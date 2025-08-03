@@ -60,33 +60,33 @@ const ProductsDetails = () => {
           </h1>
           <p className="text-green-500 mb-4">{filterData?.description}</p>
 
-          <div className="grid grid-cols-2 gap-4 text-gray-600 mb-6">
+          <div className="grid grid-cols-2 gap-4 text-amber-500 mb-6">
             <div>
-              <strong>Price:</strong> ৳{" "}
+              <strong className="text-green-700">Price :</strong> ৳{" "}
               {filterData?.price?.toLocaleString("en-BD")}
             </div>
             <div>
-              <strong>Light:</strong> {filterData?.light}
+              <strong className="text-green-700" >Light :</strong> {filterData?.light}
             </div>
             <div>
-              <strong>Water:</strong> {filterData?.water}
+              <strong className="text-green-700">Water :</strong> {filterData?.water}
             </div>
             <div>
-              <strong>Pet Friendly:</strong>{" "}
+              <strong className="text-green-700">Pet Friendly :</strong>{" "}
               {filterData?.petFriendly ? "Yes" : "No"}
             </div>
             <div>
-              <strong>Air Purifying:</strong>{" "}
+              <strong className="text-green-700">Air Purifying :</strong>{" "}
               {filterData?.airPurifying ? "Yes" : "No"}
             </div>
             <div>
-              <strong>Category:</strong> {filterData?.category}
+              <strong className="text-green-700">Category :</strong> {filterData?.category}
             </div>
           </div>
 
           {/* Quantity Input */}
           <div className="flex items-center gap-4 mb-3">
-            <label className="font-semibold text-gray-600">Quantity:</label>
+            <label className="font-semibold text-green-600">Quantity :</label>
             <input
               type="number"
               min="1"
@@ -98,7 +98,7 @@ const ProductsDetails = () => {
 
           {/* Total Price */}
           <p className="text-lg font-semibold text-green-600 mb-4">
-            Total: ৳ {(filterData.price * quantity).toLocaleString("en-BD")}
+            Total : <span className="text-amber-500"> ৳  {(filterData.price * quantity).toLocaleString("en-BD")}</span>
           </p>
 
           {/* Buttons */}

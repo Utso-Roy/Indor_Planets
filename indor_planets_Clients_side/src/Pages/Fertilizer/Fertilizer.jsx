@@ -17,9 +17,11 @@ const Fertilizer = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-5">
       {fertilizers.map((fertilizer) => (
-        <Link to={`/fertilizerDetails/${fertilizer?._id}`}>
+        <Link
+          key={fertilizer?._id}
+          to={`/fertilizerDetails/${fertilizer?._id}`}
+        >
           <SpotlightCard
-            key={fertilizer?._id}
             className="custom-spotlight-card cursor-target cursor-pointer  shadow-lg rounded-xl overflow-hidden"
             spotlightColor="rgb(167, 243, 208)
 

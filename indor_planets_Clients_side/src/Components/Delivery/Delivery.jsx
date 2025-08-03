@@ -191,7 +191,7 @@ const Delivery = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style jsx >{`
         @keyframes scroll {
           0% {
             transform: translateX(0);
