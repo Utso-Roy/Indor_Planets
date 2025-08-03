@@ -93,13 +93,31 @@ const Products = () => {
                 />
               </figure>
               <div className="card-body">
-                <h2 className="card-title text-green-500">{product?.name}</h2>
-                <p className="text-green-400 font-semibold text-lg">
-  ৳ {product?.price?.toLocaleString("en-BD")}
-</p>
+  <h2 className="card-title text-green-500">{product?.name}</h2>
+  <p className="text-green-400 font-semibold text-lg">
+    ৳ {product?.price?.toLocaleString("en-BD")}
+  </p>
 
-                <p className='text-green-700'>{product?.description}</p>
-              </div>
+  {/* Rating */}
+  <div className="flex items-center gap-1 mt-1">
+    {[1, 2, 3, 4, 5].map((star) => (
+      <span
+        key={star}
+        className={
+          star <= product?.rating
+            ? "text-yellow-400 text-lg"
+            : "text-gray-300 text-lg"
+        }
+      >
+        ★
+      </span>
+    ))}
+    <span className="ml-1 text-sm text-green-600 font-medium">
+      {product?.rating.toFixed(1)} / 5
+    </span>
+  </div>
+</div>
+
             </motion.div>
             </Link>
           ))}

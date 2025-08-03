@@ -7,9 +7,9 @@ import Section1 from "../../Components/section1/Section1";
 import GradientText from "../../Components/GradientText/GradientText";
 import Section2 from "../../Components/Section2/Section2";
 import ReviewSection from "../../Components/Review/ReviewSection";
-import Section3 from "../../Components/Section/Section3";
 import CareGuides from "../../Components/CareGuides/CareGuides";
 import Delivery from "../../Components/Delivery/Delivery";
+import BestSellerSection from "../../Components/BestSellerSection/BestSellerSection";
 const Home = () => {
   const navigate = useNavigate();
 
@@ -86,7 +86,7 @@ const Home = () => {
           </GradientText>
         </h2>
         <div>
-          <Section3></Section3>
+          <BestSellerSection></BestSellerSection>
         </div>
       </section>
       <section>

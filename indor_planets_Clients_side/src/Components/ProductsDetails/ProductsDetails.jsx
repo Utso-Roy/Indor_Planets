@@ -35,7 +35,7 @@ const ProductsDetails = () => {
   if (!filterData) return <Loading />;
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-base-300 rounded-xl shadow-2xl shadow-green-200 my-10">
+    <div className="max-w-4xl mx-auto p-6 bg-base-100 rounded-xl shadow-2xl shadow-green-200 my-10">
       {/* Back Button */}
       <div className="mb-6">
         <button
