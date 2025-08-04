@@ -28,7 +28,7 @@ const combinedMenu = [
 
 const Sidebar = () => {
   return (
-    <div className="h-screen bg-green-700 text-white p-4 w-16 lg:w-60 transition-all duration-300 overflow-y-auto">
+    <div className="h-screen bg-green-700 text-white  p-4 w-16 lg:w-60 transition-all duration-300 overflow-y-auto">
       <nav className="flex flex-col gap-3">
         {combinedMenu.map((item, index) => (
           <NavLink
@@ -36,7 +36,7 @@ const Sidebar = () => {
             to={item.path}
             className={({ isActive }) =>
               `flex items-center gap-4 p-2 rounded-md hover:bg-green-800 transition-all ${
-                isActive ? "bg-green-900" : ""
+                isActive ? "bg-green-800" : ""
               }`
             }
           >

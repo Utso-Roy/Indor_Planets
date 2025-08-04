@@ -95,7 +95,7 @@ const ProductsDetails = () => {
               min="1"
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
-              className="input input-bordered w-24 cursor-target"
+              className="input border-1 border-amber-400 w-20 text-amber-500 cursor-target"
             />
           </div>
 
@@ -140,7 +140,7 @@ const ProductsDetails = () => {
           onClose={() => setShowBuyModal(false)}
         >
           <p className="mb-4 text-green-600 font-medium">
-            ✅ You are buying {quantity}x {filterData.name}
+             You are buying {quantity}x {filterData.name}
           </p>
           <p className="mb-4 font-bold text-lg">
             Total Amount: ৳ {(filterData.price * quantity).toLocaleString("en-BD")}
