@@ -42,8 +42,7 @@ const ProfileCardComponent = ({
   enableMobileTilt = false,
   mobileTiltSensitivity = 5,
   miniAvatarUrl,
-  name = "Javi A. Torres",
-  title = "Software Engineer",
+
   handle = "javicodes",
   status = "Online",
   showUserInfo = true,
@@ -313,10 +312,6 @@ const ProfileCardComponent = ({
             )}
           </div>
           <div className="pc-content">
-            <div className="pc-details">
-              <h3>{name}</h3>
-              <p>{title}</p>
-            </div>
           </div>
         </div>
       </section>

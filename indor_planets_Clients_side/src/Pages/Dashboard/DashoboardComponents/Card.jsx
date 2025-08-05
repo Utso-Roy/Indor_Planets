@@ -5,8 +5,6 @@ const Card = () => {
     <div >
       <ProfileCard
       
-        name="Javi A. Torres"
-        title="Software Engineer"
         handle="javicodes"
         status="Online"
         contactText="Contact Me"
