@@ -16,9 +16,7 @@ const Products = () => {
 
   useEffect(() => {
     setLoading(true);
-    axiosInstance(
-      `/allIndoorPlants?page=${page}&limit=${limit}&search=${searchTerm}`
-    )
+    axiosInstance(`/allIndoorPlants?page=${page}&limit=${limit}&search=${searchTerm}`)
       .then((res) => {
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);

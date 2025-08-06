@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import axiosInstance from "../../Utils/axiosInstance";
 import Loading from "../../Loading/Loading";
 import { toast } from "react-toastify";
 import { FaArrowLeft } from "react-icons/fa";
+import { AuthContext } from "../../Context/AuthContext";
 
 const ProductsDetails = () => {
   const [data, setData] = useState([]);
+  const { user } = useContext(AuthContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [reported, setReported] = useState(false);
+
 
   const [showReportModal, setShowReportModal] = useState(false);
   const [showBuyModal, setShowBuyModal] = useState(false);
@@ -36,6 +40,21 @@ const ProductsDetails = () => {
 
   if (!filterData) return <Loading />;
 
+  const handleReport = async (id) => {
+    try {
+       await axiosInstance.post(`/report`, {
+        productId: id,
+        reportedName: user?.displayName,
+        reportedBy: user.email,
+       });
+      toast.success("Product reported successfully!");
+      setReported(true)
+    } catch (error) {
+      toast.error("Failed to report product.");
+      console.error(error);
+    }
+  };
+
   return (
     <div className="max-w-4xl mx-auto p-6 bg-base-100 rounded-xl shadow-2xl shadow-green-200 my-10">
       {/* Back Button */}
@@ -60,36 +79,44 @@ const ProductsDetails = () => {
           <h1 className="text-3xl font-bold text-emerald-600 mb-4">
             {filterData?.name}
           </h1>
-          <p className="text-green-500 mb-4">{filterData?.description}</p>
+          <p className="text-gray-700 mb-4">{filterData?.description}</p>
 
           <div className="grid grid-cols-2 gap-4 text-amber-500 mb-6">
             <div>
-              <strong className="text-green-700">Price :</strong> ৳{" "}
+              <strong className="text-gray-600 font-semibold">Price :</strong> ৳{" "}
               {filterData?.price?.toLocaleString("en-BD")}
             </div>
             <div>
-              <strong className="text-green-700">Light :</strong> {filterData?.light}
+              <strong className="text-gray-600 font-semibold">Light :</strong>{" "}
+              {filterData?.light}
             </div>
             <div>
-              <strong className="text-green-700">Water :</strong> {filterData?.water}
+              <strong className="text-gray-600 font-semibold">Water :</strong>{" "}
+              {filterData?.water}
             </div>
             <div>
-              <strong className="text-green-700">Pet Friendly :</strong>{" "}
+              <strong className="text-gray-600 font-semibold">
+                Pet Friendly :
+              </strong>{" "}
               {filterData?.petFriendly ? "Yes" : "No"}
             </div>
             <div>
-              <strong className="text-green-700">Air Purifying :</strong>{" "}
+              <strong className="text-gray-600 font-semibold">
+                Air Purifying :
+              </strong>{" "}
               {filterData?.airPurifying ? "Yes" : "No"}
             </div>
             <div>
-              <strong className="text-green-700">Category :</strong>{" "}
+              <strong className="text-gray-600 font-semibold">
+                Category :
+              </strong>{" "}
               {filterData?.category}
             </div>
           </div>
 
           {/* Quantity Input */}
           <div className="flex items-center gap-4 mb-3">
-            <label className="font-semibold text-green-600">Quantity :</label>
+            <label className="font-semibold text-gray-700">Quantity :</label>
             <input
               type="number"
               min="1"
@@ -100,7 +127,7 @@ const ProductsDetails = () => {
           </div>
 
           {/* Total Price */}
-          <p className="text-lg font-semibold text-green-600 mb-4">
+          <p className="text-lg font-semibold text-gray-700 mb-4">
             Total :{" "}
             <span className="text-amber-500">
               ৳ {(filterData.price * quantity).toLocaleString("en-BD")}
@@ -111,9 +138,7 @@ const ProductsDetails = () => {
           <div className="flex space-x-4">
             <button
               className="btn bg-emerald-500 cursor-target cursor-pointer text-white flex-grow"
-              onClick={() => {
-                setShowBuyModal(true);
-              }}
+              onClick={() => setShowBuyModal(true)}
             >
               Buy
             </button>
@@ -139,11 +164,12 @@ const ProductsDetails = () => {
           title={`Buy ${filterData.name}`}
           onClose={() => setShowBuyModal(false)}
         >
-          <p className="mb-4 text-green-600 font-medium">
-             You are buying {quantity}x {filterData.name}
+          <p className="mb-4 text-gray-700 font-medium">
+            You are buying {quantity}x {filterData.name}
           </p>
           <p className="mb-4 font-bold text-lg">
-            Total Amount: ৳ {(filterData.price * quantity).toLocaleString("en-BD")}
+            Total Amount: ৳{" "}
+            {(filterData.price * quantity).toLocaleString("en-BD")}
           </p>
           <div className="modal-action">
             <button
@@ -166,24 +192,25 @@ const ProductsDetails = () => {
           onClose={() => setShowReportModal(false)}
           reportOnly
         >
-          <p className="text-red-500 mb-4">
+          <p className="text-red-600 mb-4 font-medium">
             If you want to report this product, please confirm below.
           </p>
           <div className="modal-action space-x-2">
             <button
               className="btn cursor-target cursor-pointer bg-red-500 text-white"
+              disabled={reported}
               onClick={() => {
-                toast.success("Report confirmed!");
+                handleReport(filterData?._id);
                 setShowReportModal(false);
               }}
             >
-              Confirm
+              {reported? "reported" : "confirm"}
             </button>
           </div>
         </Modal>
       )}
 
-      {/* Review Modal with Rating */}
+      {/* Review Modal */}
       {showReviewModal && (
         <Modal
           title={`Review ${filterData.name}`}
@@ -198,7 +225,7 @@ const ProductsDetails = () => {
             }}
           >
             <div className="mb-4">
-              <p className="font-medium text-green-700 mb-1">Your Rating:</p>
+              <p className="font-medium text-gray-700 mb-1">Your Rating:</p>
               <div className="flex gap-2">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <label key={star}>
@@ -259,7 +286,7 @@ const Modal = ({ children, title, onClose, reportOnly }) => {
       >
         <h3
           className={`text-xl font-bold mb-4 ${
-            reportOnly ? "text-red-500" : "text-emerald-600"
+            reportOnly ? "text-red-600" : "text-emerald-600"
           }`}
         >
           {title}
