@@ -14,7 +14,7 @@ const ProductsDetails = () => {
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [reported, setReported] = useState(false);
-
+  const [review, setReview] = useState(false);
 
   const [showReportModal, setShowReportModal] = useState(false);
   const [showBuyModal, setShowBuyModal] = useState(false);
@@ -42,16 +42,39 @@ const ProductsDetails = () => {
 
   const handleReport = async (id) => {
     try {
-       await axiosInstance.post(`/report`, {
+      await axiosInstance.post(`/report`, {
         productId: id,
         reportedName: user?.displayName,
         reportedBy: user.email,
-       });
+      });
       toast.success("Product reported successfully!");
-      setReported(true)
+      setReported(true);
     } catch (error) {
       toast.error("Failed to report product.");
       console.error(error);
+    }
+  };
+
+  const handleSubmit = (e,id) => {
+    e.preventDefault();
+    const form = e.target;
+    const textArea = form.textArea.value;
+    const rating = form.rating.value;
+    const reviewData = {
+      reviewId : id,
+      textArea: textArea,
+      rating: rating,
+      user: user?.displayName,
+      userEmail: user.email,
+    };
+    try {
+      axiosInstance.post("/review", reviewData);
+      toast.success("Product review successfully!");
+      setReview(true)
+      setShowReviewModal(false);
+      setRating(0);
+    } catch (error) {
+      toast.error("Failed to report product.", error);
     }
   };
 
@@ -204,7 +227,7 @@ const ProductsDetails = () => {
                 setShowReportModal(false);
               }}
             >
-              {reported? "reported" : "confirm"}
+              {reported ? "reported" : "confirm"}
             </button>
           </div>
         </Modal>
@@ -216,14 +239,7 @@ const ProductsDetails = () => {
           title={`Review ${filterData.name}`}
           onClose={() => setShowReviewModal(false)}
         >
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              toast.success(`Review submitted with ${rating} star(s)!`);
-              setShowReviewModal(false);
-              setRating(0);
-            }}
-          >
+          <form onSubmit={(e)=>handleSubmit(e,filterData?._id)}>
             <div className="mb-4">
               <p className="font-medium text-gray-700 mb-1">Your Rating:</p>
               <div className="flex gap-2">
@@ -232,6 +248,7 @@ const ProductsDetails = () => {
                     <input
                       type="radio"
                       name="rating"
+                      required={star === rating}
                       value={star}
                       checked={rating === star}
                       onChange={() => setRating(star)}
@@ -250,22 +267,17 @@ const ProductsDetails = () => {
             </div>
             <textarea
               placeholder="Write your review here..."
+              name="textArea"
               required
               className="textarea cursor-target textarea-bordered w-full mb-4"
             ></textarea>
             <div className="modal-action">
               <button
-                type="button"
-                className="btn cursor-target cursor-pointer"
-                onClick={() => setShowReviewModal(false)}
-              >
-                Cancel
-              </button>
-              <button
                 type="submit"
+                disabled = {review}
                 className="btn cursor-target cursor-pointer bg-amber-500 text-white"
               >
-                Submit
+              {review? "Reviewed" : 'submit'}
               </button>
             </div>
           </form>
