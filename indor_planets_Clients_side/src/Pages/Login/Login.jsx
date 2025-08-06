@@ -9,7 +9,7 @@ import { useLocation, useNavigate } from "react-router";
 import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
-  const { signIn, setUser, googleLogin } = useContext(AuthContext);
+  const { signIn, setUser, googleLogin,resetPassword } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword(!showPassword);
   const location = useLocation();
@@ -21,6 +21,7 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
+    getValues
   } = useForm();
 
   const onsubmit = (data) => {
@@ -50,6 +51,29 @@ const Login = () => {
         toast.error("Google Login Failed");
       });
   };
+
+
+
+  const handlePassword = () => {
+ 
+    const email = getValues("email"); 
+    console.log(email)
+
+  if (!email) {
+    toast.error("Please enter your email first");
+    return;
+  }
+  resetPassword(email)
+    .then(() => {
+      toast.success("Password reset email sent!");
+    })
+    .catch((error) => {
+      toast.error("Failed to send reset email");
+      console.log(error);
+    });
+
+
+  }
 
   return (
     <div className="min-h-screen bg-base-300 flex justify-center items-center px-4">
@@ -123,9 +147,9 @@ const Login = () => {
 
               {/* Forgot password */}
               <div className="text-right">
-                <a className="link link-hover cursor-target text-sm text-green-600">
+                <button onClick={handlePassword} className="link link-hover cursor-target text-sm text-green-600">
                   Forgot password?
-                </a>
+                </button>
               </div>
 
               {/* Login Button */}
