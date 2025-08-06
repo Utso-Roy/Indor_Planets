@@ -73,6 +73,7 @@ const ProductsDetails = () => {
       setReview(true)
       setShowReviewModal(false);
       setRating(0);
+      form.reset()
     } catch (error) {
       toast.error("Failed to report product.", error);
     }

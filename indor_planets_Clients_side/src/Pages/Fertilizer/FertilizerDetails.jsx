@@ -1,20 +1,22 @@
-import React, { useState } from "react";
-import { useParams } from "react-router";
-import { useQuery } from "@tanstack/react-query";
+import React, { useContext, useState } from "react";
+import { useParams, useNavigate } from "react-router";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../Utils/axiosInstance";
 import Loading from "../../Loading/Loading";
 import { toast } from "react-toastify";
 import { FaArrowLeft } from "react-icons/fa";
-import { useNavigate } from "react-router";
+import { AuthContext } from "../../Context/AuthContext";
 
 const FertilizerDetails = () => {
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const [showBuyModal, setShowBuyModal] = useState(false);
   const [showReviewModal, setShowReviewModal] = useState(false);
-  const [rating, setRating] = useState(0); 
+  const [rating, setRating] = useState(0);
 
+  // Query to get all fertilizers
   const { data, isPending } = useQuery({
     queryKey: ["fertilizer"],
     queryFn: async () => {
@@ -23,12 +25,46 @@ const FertilizerDetails = () => {
     },
   });
 
+  // Mutation to post review
+  const { mutate, isPending: isSubmitting } = useMutation({
+    mutationFn: async (reviewData) => {
+      const res = await axiosInstance.post("/fertilizerReview", reviewData);
+      return res.data;
+    },
+    onSuccess: () => {
+      toast.success("Review submitted successfully!");
+      setShowReviewModal(false);
+      setRating(0);
+    },
+    onError: () => {
+      toast.error("Something went wrong!");
+    },
+  });
+
   if (isPending) return <Loading />;
 
   const fertilizer = data?.find((a) => a._id === id);
-  if (!fertilizer) return <p className="text-red-500 text-center">Product not found</p>;
+  if (!fertilizer)
+    return <p className="text-red-500 text-center">Product not found</p>;
 
   const totalPrice = fertilizer.price * quantity;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const textArea = form.textArea.value;
+
+    const reviewData = {
+      fertilizerId: fertilizer._id,
+      textArea: textArea,
+      rating: rating,
+      user: user?.displayName || "Anonymous",
+      userEmail: user?.email || "no-email",
+    };
+
+    mutate(reviewData);
+    form.reset();
+  };
 
   return (
     <div className="max-w-5xl mx-auto p-6 bg-base-100 rounded-xl shadow-2xl shadow-green-100 my-10">
@@ -47,12 +83,14 @@ const FertilizerDetails = () => {
         <img
           src={fertilizer?.image}
           alt={fertilizer?.name}
-          className="w-full md:w-1/2 h-80 object-contain rounded-lg "
+          className="w-full md:w-1/2 h-80 object-contain rounded-lg"
         />
 
         <div className="flex flex-col justify-between md:w-1/2">
           <div>
-            <h2 className="text-3xl font-bold text-green-700 mb-3">{fertilizer?.name}</h2>
+            <h2 className="text-3xl font-bold text-green-700 mb-3">
+              {fertilizer?.name}
+            </h2>
             <p className="text-gray-700 mb-4">{fertilizer?.description}</p>
             <p className="mb-2">
               <span className="text-amber-500 font-semibold">Suitable For:</span>{" "}
@@ -119,7 +157,9 @@ const FertilizerDetails = () => {
             <button
               className="btn bg-green-600 text-white cursor-target"
               onClick={() => {
-                toast.success(`${quantity} ${fertilizer.name} purchased successfully!`);
+                toast.success(
+                  `${quantity} ${fertilizer.name} purchased successfully!`
+                );
                 setShowBuyModal(false);
               }}
             >
@@ -132,14 +172,7 @@ const FertilizerDetails = () => {
       {/* Review Modal */}
       {showReviewModal && (
         <Modal title="Write a Review" onClose={() => setShowReviewModal(false)}>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              toast.success(`You rated ${rating} star(s) and submitted your review!`);
-              setShowReviewModal(false);
-              setRating(0);
-            }}
-          >
+          <form onSubmit={handleSubmit}>
             {/* Star Rating */}
             <div className="flex items-center gap-2 mb-4">
               <span className="text-green-700 font-medium">Your Rating:</span>
@@ -158,20 +191,18 @@ const FertilizerDetails = () => {
 
             <textarea
               placeholder="Write your review here..."
+              name="textArea"
               required
               className="textarea textarea-bordered w-full mb-4 cursor-target"
             />
 
             <div className="modal-action">
               <button
-                type="button"
-                onClick={() => setShowReviewModal(false)}
-                className="btn cursor-target"
+                type="submit"
+                className="btn bg-amber-500 text-white cursor-target"
+                disabled={rating === 0 || isSubmitting}
               >
-                Cancel
-              </button>
-              <button type="submit" className="btn bg-amber-500 text-white cursor-target">
-                Submit
+                {isSubmitting ? "Submitting..." : "Submit"}
               </button>
             </div>
           </form>
