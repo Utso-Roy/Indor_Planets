@@ -25,6 +25,7 @@ import AdminProfile from '../Pages/Dashboard/Admin/AdminProfile'
 import AdminMangeReview from "../Pages/Dashboard/Admin/AdminManageReview";
 import AdminMangeUser from "../Pages/Dashboard/Admin/AdminMangeUser";
 import AdminManageReport from "../Pages/Dashboard/Admin/AdminManageReport";
+import SellerProductsDetails from "../Components/SellerProductsDetails/SellerProductsDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -175,6 +176,13 @@ const router = createBrowserRouter([
         path: '/dashboard/manage-reports',
         element: <PrivateRoute>
           <AdminManageReport></AdminManageReport>
+        </PrivateRoute>
+      }
+      ,
+      {
+        path: '/dashboard/sellerDetailsPage/:id',
+        element: <PrivateRoute>
+          <SellerProductsDetails></SellerProductsDetails>
         </PrivateRoute>
       }
     ]

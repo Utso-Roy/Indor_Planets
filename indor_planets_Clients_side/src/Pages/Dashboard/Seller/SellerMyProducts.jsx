@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '../../../Utils/axiosInstance';
 import Loader from '../../../Loading/Loader';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router';
 
 const SellerMyProducts = () => {
   const queryClient = useQueryClient();
@@ -26,7 +27,8 @@ const SellerMyProducts = () => {
 
   const handleClick = (id) => {
     deleteProductMutation.mutate(id);
-  };
+    };
+    
 
   if (isPending) {
     return <Loader />;
@@ -71,12 +73,16 @@ const SellerMyProducts = () => {
                       {product?.status}
                     </span>
                   </td>
-                  <td className="flex items-center gap-2">
-                    <button className="btn btn-sm bg-blue-500 hover:bg-blue-700 text-base-200">
+                  <td className="flex items-center mt-3 gap-2">
+                          <Link to={`/dashboard/sellerDetailsPage/${product?._id}`}>
+                               <button  className="btn btn-sm bg-blue-500 hover:bg-blue-700 text-base-200">
                       Details
                     </button>
+                          
+                          
+                          </Link>
                     <button
-                      onClick={() => handleClick(product?._id)}
+                      onClick={() => handleClick(product._id)}
                       className="btn btn-sm bg-red-500 hover:bg-red-700 text-base-200"
                     >
                       Delete
