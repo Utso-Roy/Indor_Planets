@@ -1,16 +1,35 @@
-import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '../../../Utils/axiosInstance';
+import Loader from '../../../Loading/Loader';
+import { toast } from 'react-toastify';
 
 const SellerMyProducts = () => {
+  const queryClient = useQueryClient();
+
   const { data: products = [], isPending } = useQuery({
     queryKey: ['addProductsData'],
     queryFn: () =>
       axiosInstance.get('/addProductsData').then((res) => res.data),
   });
 
+  const deleteProductMutation = useMutation({
+    mutationFn: (id) => axiosInstance.delete(`/addProductsData/${id}`),
+    onSuccess: () => {
+      toast.success('Product deleted successfully!');
+      queryClient.invalidateQueries({ queryKey: ['addProductsData'] });
+    },
+    onError: () => {
+      toast.error('Failed to delete product.');
+    },
+  });
+
+  const handleClick = (id) => {
+    deleteProductMutation.mutate(id);
+  };
+
   if (isPending) {
-    return <div className="text-center text-lg font-semibold">Loading...</div>;
+    return <Loader />;
   }
 
   return (
@@ -48,13 +67,18 @@ const SellerMyProducts = () => {
                   </td>
                   <td className="capitalize">{product?.category}</td>
                   <td>
-                    <span className="badge badge-warning">Pending</span>
+                    <span className="rounded-full text-gray-700 bg-amber-400 py-1 px-4">
+                      {product?.status}
+                    </span>
                   </td>
-                  <td className="flex gap-2">
-                    <button className="btn btn-sm bg-green-500 hover:bg-green-700 text-base-200">
-                      View
+                  <td className="flex items-center gap-2">
+                    <button className="btn btn-sm bg-blue-500 hover:bg-blue-700 text-base-200">
+                      Details
                     </button>
-                    <button className="btn btn-sm bg-red-500 hover:bg-red-700 text-base-200">
+                    <button
+                      onClick={() => handleClick(product?._id)}
+                      className="btn btn-sm bg-red-500 hover:bg-red-700 text-base-200"
+                    >
                       Delete
                     </button>
                   </td>

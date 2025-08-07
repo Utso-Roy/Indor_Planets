@@ -27,6 +27,7 @@ const SellerAddProducts = () => {
     try {
       const formattedData = {
         ...product,
+        status : "Pending",
         price: parseInt(product.price, 10),
       };
 
@@ -35,7 +36,6 @@ const SellerAddProducts = () => {
       if (response?.data?.insertedId || response?.data?.acknowledged) {
         toast.success("Product added successfully!");
 
-        // Reset form state
         setProduct({
           name: "",
           description: "",

@@ -17,7 +17,6 @@ const combinedMenu = [
 
     { name: "Add Product", icon: <FaPlus />, path: "/dashboard/seller/add-product" },
   { name: "My Products", icon: <FaBox />, path: "/dashboard/seller/products" },
-  { name: "My Store", icon: <FaStore />, path: "/dashboard/seller/store" },
 
   { name: "User Home", icon: <FaHome />, path: "/dashboard" },
   { name: "Profile", icon: <FaUser />, path: "/dashboard/profile" },

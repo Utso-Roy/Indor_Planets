@@ -26,9 +26,9 @@ const AdminManageReview = () => {
 
       <div className="overflow-x-auto rounded-lg shadow-2xl shadow-green-100">
         <table className="table w-full">
-          <thead className="bg-green-100 text-sm md:text-base">
+          <thead className="bg-green-100 sticky top-0 text-sm md:text-base">
             <tr>
-              <th className="py-2 px-3 text-left">#</th>
+              <th className="py-2 px-3 text-left">Number</th>
               <th className="py-2 px-3 text-left">User Name</th>
               <th className="py-2 px-3 text-left">Rating</th>
               <th className="py-2 px-3 text-left">Review</th>
