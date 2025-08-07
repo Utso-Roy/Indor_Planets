@@ -3,12 +3,16 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import axiosInstance from "../../../Utils/axiosInstance";
 import Loader from "../../../Loading/Loader";
+import { Link } from "react-router";
 
 const AdminManageReview = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["reviewData"],
     queryFn: () => axiosInstance.get("/reviewData").then((res) => res.data),
   });
+
+
+  
 
   if (isLoading) return <Loader></Loader>
   if (error)
@@ -38,7 +42,7 @@ const AdminManageReview = () => {
           <tbody>
             {data?.map((review, index) => (
               <tr
-                key={review.reviewId}
+                key={review?.reviewId}
                 className="border-t hover:bg-gray-50 transition-colors"
               >
                 <td className="py-2 px-3">{index + 1}</td>
@@ -55,9 +59,13 @@ const AdminManageReview = () => {
                 </td>
                 <td className="py-2 px-3">
                   <div className="flex flex-col sm:flex-row gap-2">
-                    <button className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white w-full sm:w-auto">
+                    <Link to={`/dashboard/reviewDetailsPage/${review?.reviewId}`}>
+                      
+                      <button className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white w-full sm:w-auto">
                       Details
                     </button>
+                    
+                    </Link>
                     <button className="btn btn-sm bg-green-500 hover:bg-green-600 text-white w-full sm:w-auto">
                       Add Review Section
                     </button>

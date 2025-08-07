@@ -26,6 +26,7 @@ import AdminMangeReview from "../Pages/Dashboard/Admin/AdminManageReview";
 import AdminMangeUser from "../Pages/Dashboard/Admin/AdminMangeUser";
 import AdminManageReport from "../Pages/Dashboard/Admin/AdminManageReport";
 import SellerProductsDetails from "../Components/SellerProductsDetails/SellerProductsDetails";
+import ReviewDetailsPage from "../Pages/Dashboard/Admin/ReviewDetails/ReviewDetailsPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -183,6 +184,13 @@ const router = createBrowserRouter([
         path: '/dashboard/sellerDetailsPage/:id',
         element: <PrivateRoute>
           <SellerProductsDetails></SellerProductsDetails>
+        </PrivateRoute>
+      }
+      ,
+      {
+        path: '/dashboard/reviewDetailsPage/:id',
+        element: <PrivateRoute>
+          <ReviewDetailsPage></ReviewDetailsPage>
         </PrivateRoute>
       }
     ]
