@@ -1,3 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+/* PrimeReact core */
+@import 'primereact/resources/primereact.min.css';
+@import 'primeicons/primeicons.css';
+@import "primereact/resources/themes/arya-green/theme.css"
