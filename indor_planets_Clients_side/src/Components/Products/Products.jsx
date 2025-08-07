@@ -83,9 +83,11 @@ const Products = () => {
           }}
         >
           {products.map((product, index) => (
-            <Link to={`/productsDetails/${product?._id}`}>
+            <Link
+              key={index}
+              to={`/productsDetails/${product?._id}`}>
               <motion.div
-                key={index}
+                
                 className="card bg-base-100  cursor-target cursor-pointer shadow-xl"
                 custom={index}
                 variants={cardVariants}

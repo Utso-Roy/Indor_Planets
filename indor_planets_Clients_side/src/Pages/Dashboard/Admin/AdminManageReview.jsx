@@ -1,20 +1,38 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import axiosInstance from "../../../Utils/axiosInstance";
 import Loader from "../../../Loading/Loader";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 
 const AdminManageReview = () => {
+  const queryClient = useQueryClient(); // needed for cache invalidation
+
   const { data, isLoading, error } = useQuery({
     queryKey: ["reviewData"],
     queryFn: () => axiosInstance.get("/reviewData").then((res) => res.data),
   });
 
+  const handleClick = async (id) => {
+    try {
+      const res = await axiosInstance.patch(`/reviewData/${id}`, {
+        showInHome: true, 
+      });
 
-  
+      if (res.data?.modifiedCount > 0) {
+        toast.success("Successfully added to homepage section!");
+        queryClient.invalidateQueries(["reviewData"]); // refresh data
+      } else {
+        toast.warning("Nothing was updated!");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to update review.");
+    }
+  };
 
-  if (isLoading) return <Loader></Loader>
+  if (isLoading) return <Loader />;
   if (error)
     return (
       <p className="text-center text-red-500 py-6">
@@ -59,15 +77,23 @@ const AdminManageReview = () => {
                 </td>
                 <td className="py-2 px-3">
                   <div className="flex flex-col sm:flex-row gap-2">
-                    <Link to={`/dashboard/reviewDetailsPage/${review?.reviewId}`}>
-                      
+                    <Link
+                      to={`/dashboard/reviewDetailsPage/${review?.reviewId}`}
+                    >
                       <button className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white w-full sm:w-auto">
-                      Details
-                    </button>
-                    
+                        Details
+                      </button>
                     </Link>
-                    <button className="btn btn-sm bg-green-500 hover:bg-green-600 text-white w-full sm:w-auto">
-                      Add Review Section
+                    <button
+                      onClick={() => handleClick(review?.reviewId)}
+                      disabled={review?.showInHome} // prevent duplicate
+                      className={`btn btn-sm text-white w-full sm:w-auto ${
+                        review?.showInHome
+                          ? "bg-gray-400 cursor-not-allowed"
+                          : "bg-green-500 hover:bg-green-600"
+                      }`}
+                    >
+                      {review?.showInHome ? "Already Added" : "Add Review Section"}
                     </button>
                   </div>
                 </td>

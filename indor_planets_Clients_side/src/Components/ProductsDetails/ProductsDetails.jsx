@@ -55,25 +55,28 @@ const ProductsDetails = () => {
     }
   };
 
-  const handleSubmit = (e,id) => {
+  const handleSubmit = (e, id) => {
     e.preventDefault();
     const form = e.target;
     const textArea = form.textArea.value;
     const rating = form.rating.value;
     const reviewData = {
-      reviewId : id,
+      reviewId: id,
       textArea: textArea,
       rating: rating,
       user: user?.displayName,
-      userEmail: user.email,
+      userEmail: user?.email,
+      showInHome: false,
+      image : user?.photoURL,
+      date: new Date(),
     };
     try {
       axiosInstance.post("/review", reviewData);
       toast.success("Product review successfully!");
-      setReview(true)
+      setReview(true);
       setShowReviewModal(false);
       setRating(0);
-      form.reset()
+      form.reset();
     } catch (error) {
       toast.error("Failed to report product.", error);
     }
@@ -240,7 +243,7 @@ const ProductsDetails = () => {
           title={`Review ${filterData.name}`}
           onClose={() => setShowReviewModal(false)}
         >
-          <form onSubmit={(e)=>handleSubmit(e,filterData?._id)}>
+          <form onSubmit={(e) => handleSubmit(e, filterData?._id)}>
             <div className="mb-4">
               <p className="font-medium text-gray-700 mb-1">Your Rating:</p>
               <div className="flex gap-2">
@@ -275,10 +278,10 @@ const ProductsDetails = () => {
             <div className="modal-action">
               <button
                 type="submit"
-                disabled = {review}
+                disabled={review}
                 className="btn cursor-target cursor-pointer bg-amber-500 text-white"
               >
-              {review? "Reviewed" : 'submit'}
+                {review ? "Reviewed" : "submit"}
               </button>
             </div>
           </form>
