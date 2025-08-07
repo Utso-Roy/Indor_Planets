@@ -8,39 +8,49 @@ const AdminMangeReport = () => {
     queryFn: () => axiosInstance.get("/reportData").then((res) => res.data),
   });
 
-  if (isLoading) return <p className="text-center">Loading...</p>;
+  if (isLoading) return <p className="text-center py-6">Loading...</p>;
   if (error)
-    return <p className="text-center text-red-500">Failed to load reports</p>;
+    return <p className="text-center text-red-500 py-6">Failed to load reports</p>;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-6">
-      <h2 className="text-2xl font-semibold mb-4">Manage Reports</h2>
+      <h2 className="text-2xl text-center text-green-500 font-semibold mb-6">Manage Reports</h2>
 
-      <div className="overflow-x-auto rounded-lg shadow">
+      <div className="overflow-x-auto rounded-lg shadow-2xl shadow-green-100">
         <table className="table w-full">
-          <thead className="bg-gray-200">
+          <thead className="bg-gray-100 text-sm md:text-base">
             <tr>
-              <th>#</th>
-              <th>Reporter Name</th>
-              <th>Reported Gmail</th>
-              <th>Actions</th>
+              <th className="py-2 px-3 text-left">#</th>
+              <th className="py-2 px-3 text-left">Reporter Name</th>
+              <th className="py-2 px-3 text-left">Reported Gmail</th>
+              <th className="py-2 px-3 text-left">Actions</th>
             </tr>
           </thead>
           <tbody>
             {data?.map((report, index) => (
-              <tr key={report._id} className="hover:bg-gray-100">
-                <td>{index + 1}</td>
-                <td>{report?.reportedName || "Unknown"}</td>
-                <td>{report?.reportedBy || "No Subject"}</td>
-                <td className="flex flex-col md:flex-row gap-2">
-                  <button className="btn btn-sm bg-blue-500 text-base-200">Details</button>
-                  <button className="btn btn-sm bg-red-500 text-base-200">Cancel</button>
+              <tr
+                key={report._id}
+                className="border-t hover:bg-gray-50 transition-colors"
+              >
+                <td className="py-2 px-3">{index + 1}</td>
+                <td className="py-2 px-3 break-all">{report?.reportedName || "Unknown"}</td>
+                <td className="py-2 px-3 break-all">{report?.reportedBy || "N/A"}</td>
+                <td className="py-2 px-3">
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <button className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white w-full sm:w-auto">
+                      Details
+                    </button>
+                    <button className="btn btn-sm bg-red-500 hover:bg-red-600 text-white w-full sm:w-auto">
+                      Cancel
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
+
             {data?.length === 0 && (
               <tr>
-                <td colSpan="4" className="text-center text-gray-500 py-4">
+                <td colSpan="4" className="text-center text-gray-500 py-6">
                   No reports found.
                 </td>
               </tr>

@@ -1,11 +1,83 @@
-import React from 'react';
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import { FaStar } from "react-icons/fa";
+import axiosInstance from "../../../Utils/axiosInstance";
+import Loader from "../../../Loading/Loader";
 
 const AdminManageReview = () => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["reviewData"],
+    queryFn: () => axiosInstance.get("/reviewData").then((res) => res.data),
+  });
+
+  if (isLoading) return <Loader></Loader>
+  if (error)
     return (
-        <div>
-            This is admin mange Review
-        </div>
+      <p className="text-center text-red-500 py-6">
+        Failed to load reviews
+      </p>
     );
+
+  return (
+    <div className="max-w-4xl mx-auto px-4 py-6">
+      <h2 className="text-2xl text-center text-green-600 font-semibold mb-6">
+        Manage Reviews
+      </h2>
+
+      <div className="overflow-x-auto rounded-lg shadow-2xl shadow-green-100">
+        <table className="table w-full">
+          <thead className="bg-green-100 text-sm md:text-base">
+            <tr>
+              <th className="py-2 px-3 text-left">#</th>
+              <th className="py-2 px-3 text-left">User Name</th>
+              <th className="py-2 px-3 text-left">Rating</th>
+              <th className="py-2 px-3 text-left">Review</th>
+              <th className="py-2 px-3 text-left">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data?.map((review, index) => (
+              <tr
+                key={review.reviewId}
+                className="border-t hover:bg-gray-50 transition-colors"
+              >
+                <td className="py-2 px-3">{index + 1}</td>
+                <td className="py-2 px-3 break-all">
+                  {review?.user || "Unknown"}
+                </td>
+                <td className="py-2 px-3 text-yellow-500 font-medium flex items-center gap-1">
+                  <FaStar /> {review?.rating || 0}
+                </td>
+                <td className="py-2 px-3 break-words max-w-xs">
+                  <span className="line-clamp-2">
+                    {review?.textArea || "No comment"}
+                  </span>
+                </td>
+                <td className="py-2 px-3">
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <button className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white w-full sm:w-auto">
+                      Details
+                    </button>
+                    <button className="btn btn-sm bg-green-500 hover:bg-green-600 text-white w-full sm:w-auto">
+                      Add Review Section
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+
+            {data?.length === 0 && (
+              <tr>
+                <td colSpan="5" className="text-center text-gray-500 py-6">
+                  No reviews found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 export default AdminManageReview;

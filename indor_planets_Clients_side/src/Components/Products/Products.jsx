@@ -121,7 +121,7 @@ const Products = () => {
                       </span>
                     ))}
                     <span className="ml-1 text-sm text-green-600 font-medium">
-                      {product?.rating.toFixed(1)} / 5
+                      {product?.rating} / 5
                     </span>
                   </div>
                 </div>
