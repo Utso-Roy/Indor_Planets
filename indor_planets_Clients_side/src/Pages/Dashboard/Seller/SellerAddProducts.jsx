@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axiosInstance from "../../../Utils/axiosInstance";
+import { toast } from "react-toastify";
 
 const SellerAddProducts = () => {
   const [product, setProduct] = useState({
@@ -19,14 +21,37 @@ const SellerAddProducts = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const finalData = {
-      ...product,
-      price: parseInt(product.price),
-    };
-    console.log("Submitted Product:", finalData);
-    // Backend e pathanor logic ekhane likhte paro
+
+    try {
+      const formattedData = {
+        ...product,
+        price: parseInt(product.price, 10),
+      };
+
+      const response = await axiosInstance.post("/addProductsData", formattedData);
+
+      if (response?.data?.insertedId || response?.data?.acknowledged) {
+        toast.success("Product added successfully!");
+
+        // Reset form state
+        setProduct({
+          name: "",
+          description: "",
+          image: "",
+          category: "",
+          price: "",
+          isNew: false,
+          isBest: false,
+        });
+      } else {
+        toast.error("Failed to add product. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error adding product:", error);
+      toast.error("An error occurred while adding the product.");
+    }
   };
 
   return (
@@ -35,55 +60,79 @@ const SellerAddProducts = () => {
         Add New Product
       </h2>
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <input
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+      >
+        <div>
+          <p className="text-green-600">Products Name</p>
+            <input
           type="text"
           name="name"
           placeholder="Product Name"
           className="input input-bordered w-full"
+          value={product.name}
           onChange={handleChange}
           required
         />
-        <input
+      </div>
+        <div>
+          <p className="text-green-600">Products Imag URL</p>
+           <input
           type="text"
           name="image"
           placeholder="Image URL"
           className="input input-bordered w-full"
+          value={product.image}
           onChange={handleChange}
           required
         />
-        <input
+       </div>
+        <div>
+          <p className="text-green-600">Product Category</p>
+           <input
           type="text"
           name="category"
           placeholder="Category"
           className="input input-bordered w-full"
+          value={product.category}
           onChange={handleChange}
           required
         />
-        <input
+       </div>
+        <div>
+          <p className="text-green-600">Product Price</p>
+          <input
           type="number"
           name="price"
           placeholder="Price"
           className="input input-bordered w-full"
+          value={product.price}
           onChange={handleChange}
           required
         />
-        <textarea
+        </div>
+        <div>
+          <p className="text-green-600">Product Description</p>
+           <textarea
           name="description"
           placeholder="Description"
           className="textarea textarea-bordered md:col-span-2"
           rows={3}
+          value={product.description}
           onChange={handleChange}
           required
         ></textarea>
+       </div>
 
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-4 md:col-span-2">
           <label className="label cursor-pointer">
             <span className="label-text">New Product</span>
             <input
               type="checkbox"
               name="isNew"
-              className="checkbox text-green-700  ml-2"
+              className="checkbox text-green-700 ml-2"
+              checked={product.isNew}
               onChange={handleChange}
             />
           </label>
@@ -92,13 +141,17 @@ const SellerAddProducts = () => {
             <input
               type="checkbox"
               name="isBest"
-              className="checkbox text-green-700  ml-2"
+              className="checkbox text-green-700 ml-2"
+              checked={product.isBest}
               onChange={handleChange}
             />
           </label>
         </div>
 
-        <button type="submit" className="btn  bg-green-500 text-white w-full md:col-span-2">
+        <button
+          type="submit"
+          className="btn bg-green-500 hover:bg-green-600 text-white w-full md:col-span-2"
+        >
           Submit Product
         </button>
       </form>
