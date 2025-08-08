@@ -7,6 +7,7 @@ import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
 import { updateProfile } from "firebase/auth"; 
 import { useNavigate } from "react-router";
+import axiosInstance from "../../Utils/axiosInstance";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -58,6 +59,17 @@ const Register = () => {
               photoURL: imageUrl,
             });
 
+          const userData = {
+            name: username,
+            email: email,
+            photo: imageUrl,
+            uid: loggedUser.uid,
+          };
+
+    
+          await axiosInstance.post("/users", userData);
+
+
             toast.success("Registration successful");
             navigate('/')
           })
@@ -71,6 +83,11 @@ const Register = () => {
       toast.error("Something went wrong: " + err.message);
     }
   };
+
+
+
+
+
 
   return (
     <div className="min-h-screen  p-4 bg-base-300 flex justify-center items-center px-4">
