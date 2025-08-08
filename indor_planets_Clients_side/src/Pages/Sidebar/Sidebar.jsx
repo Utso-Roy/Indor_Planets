@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router"; 
 import { FaHome, FaUser, FaBox, FaUsers, FaStore, FaBoxOpen, FaUserCog, FaPlus, FaStar, FaFlag } from "react-icons/fa";
-import { MdRateReview } from "react-icons/md";
+import { MdProductionQuantityLimits, MdRateReview } from "react-icons/md";
 
 // Combined all menu items for all roles
 const combinedMenu = [
@@ -10,6 +10,8 @@ const combinedMenu = [
 
     { name: "Manage Users", icon: <FaUsers />, path: "/dashboard/admin/users" },
     { name: "Manage Reviews", icon: <FaStar />, path: "/dashboard/manage-reviews" },
+    { name: "Manage Products ", icon: <MdProductionQuantityLimits />
+, path: "/dashboard/manage-products" },
   { name: "Manage Reports", icon: <FaFlag />, path: "/dashboard/manage-reports" },
 
     { name: "Seller Home", icon: <FaHome />, path: "/dashboard" },

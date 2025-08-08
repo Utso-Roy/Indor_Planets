@@ -22,7 +22,7 @@ const AdminManageReview = () => {
 
       if (res.data?.modifiedCount > 0) {
         toast.success("Successfully added to homepage section!");
-        queryClient.invalidateQueries(["reviewData"]); // refresh data
+        queryClient.invalidateQueries(["reviewData"]); 
       } else {
         toast.warning("Nothing was updated!");
       }
