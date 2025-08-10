@@ -18,9 +18,9 @@ const AdminMangeReport = () => {
 
       <div className="overflow-x-auto rounded-lg shadow-2xl shadow-green-100">
         <table className="table w-full">
-          <thead className="bg-gray-100 text-sm md:text-base">
+          <thead className="bg-green-100 text-sm md:text-green-700">
             <tr>
-              <th className="py-2 px-3 text-left">#</th>
+              <th className="py-2 px-3 text-left">Number</th>
               <th className="py-2 px-3 text-left">Reporter Name</th>
               <th className="py-2 px-3 text-left">Reported Gmail</th>
               <th className="py-2 px-3 text-left">Actions</th>

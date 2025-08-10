@@ -3,7 +3,6 @@ import { NavLink } from "react-router";
 import { FaHome, FaUser, FaBox, FaUsers, FaStore, FaBoxOpen, FaUserCog, FaPlus, FaStar, FaFlag } from "react-icons/fa";
 import { MdProductionQuantityLimits, MdRateReview } from "react-icons/md";
 
-// Combined all menu items for all roles
 const combinedMenu = [
     { name: "Admin Home", icon: <FaHome />, path: "/dashboard" },
     { name: "Profile", icon: <FaUser />, path: "/dashboard/admin/profile" },

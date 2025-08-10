@@ -64,6 +64,7 @@ const Register = () => {
             email: email,
             photo: imageUrl,
             uid: loggedUser.uid,
+            role :'user'
           };
 
     

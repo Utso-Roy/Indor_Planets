@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import axiosInstance from "../../Utils/axiosInstance";
 import { Link } from "react-router";
+import Loading from "../../Loading/Loading";
 
 interface Plant {
   _id: string;
@@ -27,7 +28,6 @@ const cardVariants: Variants = {
   },
 };
 
-const Loading = () => <div className="text-center py-10">Loading...</div>;
 
 const BestSellerSection = () => {
   const [newData, setNewData] = useState<Plant[]>([]);
@@ -67,9 +67,9 @@ const BestSellerSection = () => {
               loading="lazy"
             />
             <div className="p-4">
-              <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
+              <h3 className="text-md font-semibold text-gray-800">{name}</h3>
               <p className="text-green-600 font-bold mt-2">
-                ${price !== undefined ? price.toFixed(2) : "N/A"}
+                ৳{price !== undefined ? price.toFixed(2) : "N/A"}
               </p>
 
               <div className="flex items-center gap-1 mt-1">

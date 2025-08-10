@@ -33,11 +33,11 @@ const Fertilizer = () => {
               className="w-full rounded-xl h-46 "
             />
             <div className="p-4">
-              <h2 className="font-bold text-green-600 text-lg mb-2">
+              <h2 className="font-semibold text-md mb-2">
                 {fertilizer?.name}
               </h2>
 
-              <div className=" text-green-700 font-semibold rounded-lg mb-3">
+              <div className=" text-green-800  rounded-lg mb-3">
                 Price : ৳ {fertilizer?.price?.toLocaleString("en-BD")}
               </div>
             </div>

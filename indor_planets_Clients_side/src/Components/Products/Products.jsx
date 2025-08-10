@@ -104,7 +104,7 @@ const Products = () => {
                   />
                 </figure>
                 <div className="card-body">
-                  <h2 className="card-title text-green-500">{product?.name}</h2>
+                  <h2 className="card-title text-md">{product?.name}</h2>
                   <p className="text-green-400 font-semibold text-lg">
                     ৳ {product?.price?.toLocaleString("en-BD")}
                   </p>
