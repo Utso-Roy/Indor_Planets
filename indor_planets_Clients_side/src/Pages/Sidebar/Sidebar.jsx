@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
-
+import { IoMdLogOut } from "react-icons/io";
 import {
-  FaHome,
   FaUser,
   FaBox,
   FaUsers,
-  FaStore,
   FaBoxOpen,
   FaUserCog,
   FaPlus,
@@ -18,6 +16,7 @@ import { MdDashboard, MdProductionQuantityLimits, MdRateReview } from "react-ico
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../Utils/axiosInstance";
 import Loader from "../../Loading/Loader";
+import { toast } from "react-toastify";
 
 const adminMenu = [
   { name: "Profile", icon: <FaUser />, path: "/dashboard/admin/profile" },
@@ -37,11 +36,11 @@ const userMenu = [
   { name: "Profile", icon: <FaUser />, path: "/dashboard/profile" },
   { name: "My Products", icon: <FaBoxOpen />, path: "/dashboard/my-products" },
   { name: "My Reviews", icon: <MdRateReview />, path: "/dashboard/my-reviews" },
-  { name: "Profile Settings", icon: <FaUserCog />, path: "/dashboard/settings" },
 ];
 
 const Sidebar = () => {
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
+  const navigate = useNavigate()
   const { data:users=[], isPending } = useQuery({
     queryKey: ['users'],
     queryFn : ()=>axiosInstance.get('/users').then(res=>res.data)
@@ -65,21 +64,26 @@ if (currentUser?.role === 'admin') {
   if (isPending) {
     return <Loader></Loader>
   }
-
+ 
+  const handleClick = () => {
+    toast.success('Logout Successful')
+    navigate('/login')
+    
+  }
 
 
 
 
   return (
     <div className="h-screen bg-green-700 text-white  p-4 w-16 lg:w-60 transition-all duration-300 overflow-y-auto">
-<h2 className="font-semibold flex justify-center items-center gap-1 
+<h2 className="font-semibold flex  items-center gap-1 
   text-sm sm:text-base md:text-lg lg:text-xl 
   my-3 text-base-300">
   
   <MdDashboard className="text-base sm:text-lg " /> 
 
   <span className="hidden md:inline">
-    DashBoard {currentUser?.role}
+   Dashboard {currentUser?.role}
   </span>
 </h2>
 
@@ -99,6 +103,8 @@ if (currentUser?.role === 'admin') {
           </NavLink>
         ))}
       </nav>
+
+       <button onClick={handleClick} className="w-full mt-5 flex items-center gap-1 justify-center font-semibold  rounded-md cursor-pointer hover:bg-red-500 hover:text-white py-1.5 bg-white text-gray-800"><IoMdLogOut /> Logout</button>
     </div>
   );
 };

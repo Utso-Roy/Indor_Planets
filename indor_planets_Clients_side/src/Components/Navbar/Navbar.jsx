@@ -3,8 +3,8 @@ import logo from "../../assets/logo.png";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import NavLinks from "./NavLinks";
-import { MdDashboard, MdMarkEmailUnread } from "react-icons/md";
-import { FaTachometerAlt, FaSignOutAlt } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
+import { FaSignOutAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 const Navbar = () => {
@@ -105,10 +105,7 @@ const Navbar = () => {
                 </button>
 
                 <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-64">
-                  <li className="text-sm text-gray-600 px-2 py-1 flex gap-2">
-                    <MdMarkEmailUnread size={20} />
-                    {user?.email || "No email found"}
-                  </li>
+                 
 
                   <li>
                     <button className="cursor-target">
