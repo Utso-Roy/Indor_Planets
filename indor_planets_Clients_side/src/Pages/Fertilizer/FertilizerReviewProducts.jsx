@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axiosInstance from "../../Utils/axiosInstance";
 import { FaStar, FaRegStar } from "react-icons/fa";
-import { AuthContext } from "../../Context/AuthContext";
-
+import '../../../src/marquee.css'
 const FertilizerReviewProducts = () => {
   const [review, setReview] = useState([]);
-  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     axiosInstance.get("/fertilizerData").then((res) => setReview(res.data));
@@ -24,27 +22,7 @@ const FertilizerReviewProducts = () => {
   return (
       <div className="overflow-hidden w-full bg-gray-50 py-4">
           <h2 className="text-center font-semibold text-3xl text-green-600 my-5">Review Section</h2>
-      <style>
-        {`
-          @keyframes marquee {
-            0% {
-              transform: translateX(0%);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
-          }
-          
-          .animate-marquee {
-            display: flex;
-            animation: marquee 20s linear infinite;
-          }
-          
-          .animate-marquee:hover {
-            animation-play-state: paused;
-          }
-        `}
-      </style>
+  
       <div className="flex animate-marquee space-x-4">
         {[...review, ...review].map((singleData, index) => (
           <div
@@ -54,7 +32,7 @@ const FertilizerReviewProducts = () => {
             <div className="flex justify-between p-4">
               <div className="flex space-x-4">
                 <img
-                  src={user?.photoURL}
+                  src={singleData?.userImage}
                   alt={singleData.user}
                   className="object-cover w-12 h-12 rounded-full"
                 />

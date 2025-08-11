@@ -60,6 +60,7 @@ const FertilizerDetails = () => {
       rating: rating,
       user: user?.displayName || "Anonymous",
       userEmail: user?.email || "no-email",
+      userImage : user?.photoURL ,
     };
 
     mutate(reviewData);

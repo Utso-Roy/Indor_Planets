@@ -5,6 +5,7 @@ import GradientText from '../GradientText/GradientText';
 import CountUp from '../CountUp/CountUp';
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '../../Utils/axiosInstance';
+import Loading from '../../Loading/Loading';
 
 interface ReviewType {
   _id?: string;
@@ -36,7 +37,7 @@ const ReviewSection: React.FC = () => {
   });
 
   if (isPending) {
-    return <p className="text-center text-green-700 py-10">Loading reviews...</p>;
+    return <Loading></Loading>
   }
 
   if (isError) {

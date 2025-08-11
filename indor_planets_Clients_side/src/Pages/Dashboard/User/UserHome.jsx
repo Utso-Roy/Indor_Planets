@@ -3,8 +3,8 @@ import { FaArrowAltCircleLeft } from 'react-icons/fa';
 
 const UserHome = () => {
   return (
-    <div className="max-w-3xl my-5 bg-green-700 mx-auto p-6">
-      <h2 className="text-3xl font-bold text-white mb-6 text-center">
+    <div className="max-w-3xl my-5 bg-base-300 mx-auto p-6">
+      <h2 className="text-3xl font-bold text-green-500 mb-6 text-center">
         Welcome to Your Dashboard
       </h2>
 
