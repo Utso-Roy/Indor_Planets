@@ -3,19 +3,23 @@ import SpotlightCard from "../../SpotlightCard/SpotlightCard";
 import Loading from "../../Loading/Loading";
 import axiosInstance from "../../Utils/axiosInstance";
 import { Link } from "react-router";
+import FertilizerReviewProducts from "./FertilizerReviewProducts";
 
 const Fertilizer = () => {
   const [fertilizers, setFertilizers] = useState([]);
   useEffect(() => {
     axiosInstance("/allFertilizer").then((res) => setFertilizers(res.data));
-  }, []);
+  },[]);
 
   if (fertilizers.length === 0) {
     return <Loading />;
   }
 
+  
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-5">
+    <div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-5">
       {fertilizers.map((fertilizer) => (
         <Link
           key={fertilizer?._id}
@@ -44,6 +48,9 @@ const Fertilizer = () => {
           </SpotlightCard>
         </Link>
       ))}
+      </div>
+      
+      <FertilizerReviewProducts></FertilizerReviewProducts>
     </div>
   );
 };
