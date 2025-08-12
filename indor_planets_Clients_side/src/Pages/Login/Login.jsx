@@ -7,6 +7,7 @@ import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router";
 import { FaGoogle } from "react-icons/fa";
+import axiosInstance from "../../Utils/axiosInstance";
 
 const Login = () => {
   const { signIn, setUser, googleLogin,resetPassword } = useContext(AuthContext);
@@ -27,9 +28,22 @@ const Login = () => {
   const onsubmit = (data) => {
     const { email, password } = data;
     signIn(email, password)
-      .then((data) => {
+      .then(async(data) => {
         setUser(data.user);
         toast.success("Login Successfully");
+        
+        try {
+          const idToken = await data.user.getIdToken();
+        const response = await axiosInstance.post("/jwt", {
+          token: idToken,
+        });
+        const token = response.data.token;
+        localStorage.setItem("access-token", token);
+      } catch (error) {
+        console.error("JWT token fetch failed", error);
+      }
+
+
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -37,6 +51,7 @@ const Login = () => {
         console.log(error);
       });
   };
+  
 
   const handleGoogleLogin = () => {
     googleLogin()

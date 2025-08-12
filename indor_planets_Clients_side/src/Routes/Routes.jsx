@@ -28,6 +28,7 @@ import AdminManageReport from "../Pages/Dashboard/Admin/AdminManageReport";
 import SellerProductsDetails from "../Components/SellerProductsDetails/SellerProductsDetails";
 import ReviewDetailsPage from "../Pages/Dashboard/Admin/ReviewDetails/ReviewDetailsPage";
 import AdminManageProducts from "../Pages/Dashboard/Admin/AdminManageProducts";
+import UserPlantReviews from "../Pages/Dashboard/User/UserPlantReviews";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -122,6 +123,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/my-reviews",
         element: <UserReview></UserReview>,
+      },
+      {
+        path: "/dashboard/my-Plant-reviews",
+        element: <PrivateRoute><UserPlantReviews></UserPlantReviews></PrivateRoute>
       },
       {
         path: "/dashboard/profile",

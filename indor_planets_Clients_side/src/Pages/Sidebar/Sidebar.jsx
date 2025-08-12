@@ -35,7 +35,8 @@ const sellerMenu = [
 const userMenu = [
   { name: "Profile", icon: <FaUser />, path: "/dashboard/profile" },
   { name: "My Products", icon: <FaBoxOpen />, path: "/dashboard/my-products" },
-  { name: "My Reviews", icon: <MdRateReview />, path: "/dashboard/my-reviews" },
+  { name: "My Plant Reviews", icon: <MdRateReview />, path: "/dashboard/my-Plant-reviews" },
+  { name: "My Fertilizer Reviews", icon: <MdRateReview />, path: "/dashboard/my-reviews" },
 ];
 
 const Sidebar = () => {

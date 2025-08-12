@@ -46,7 +46,6 @@ const BestSellerSection = () => {
   if (newData.length === 0)
     return <p className="text-center mt-10">Products Not Found.</p>;
 
-  console.log(newData);
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
       {newData.map(({ _id, name, image, rating, price }) => (
