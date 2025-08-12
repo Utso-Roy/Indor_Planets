@@ -17,14 +17,14 @@ const AdminManageReview = () => {
   const handleClick = async (id) => {
     try {
       const res = await axiosInstance.patch(`/reviewData/${id}`, {
-        showInHome: true, 
+        showInHome:true, 
       });
 
       if (res.data?.modifiedCount > 0) {
         toast.success("Successfully added to homepage section!");
         queryClient.invalidateQueries(["reviewData"]); 
       } else {
-        toast.warning("Nothing was updated!");
+        toast.warning("This product added already");
       }
     } catch (error) {
       console.error(error);
@@ -60,7 +60,7 @@ const AdminManageReview = () => {
           <tbody>
             {data?.map((review, index) => (
               <tr
-                key={review?.reviewId}
+                key={review?._id}
                 className="border-t hover:bg-gray-50 transition-colors"
               >
                 <td className="py-2 px-3">{index + 1}</td>
@@ -86,7 +86,7 @@ const AdminManageReview = () => {
                     </Link>
                     <button
                       onClick={() => handleClick(review?.reviewId)}
-                      disabled={review?.showInHome} // prevent duplicate
+                      disabled={review?.showInHome} 
                       className={`btn btn-sm text-white w-full sm:w-auto ${
                         review?.showInHome
                           ? "bg-gray-400 cursor-not-allowed"

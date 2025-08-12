@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import axiosInstance from "../../../Utils/axiosInstance";
+import Loader from "../../../Loading/Loader";
+import { Link } from "react-router";
 
 const AdminMangeReport = () => {
   const { data, isLoading, error } = useQuery({
@@ -8,13 +10,23 @@ const AdminMangeReport = () => {
     queryFn: () => axiosInstance.get("/reportData").then((res) => res.data),
   });
 
-  if (isLoading) return <p className="text-center py-6">Loading...</p>;
+
+  const handleCancel = (id) => {
+    console.log('utso',id)
+  }
+
+  if (isLoading) return <Loader></Loader>;
+
   if (error)
-    return <p className="text-center text-red-500 py-6">Failed to load reports</p>;
+    return (
+      <p className="text-center text-red-500 py-6">Failed to load reports</p>
+    );
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-6">
-      <h2 className="text-2xl text-center text-green-500 font-semibold mb-6">Manage Reports</h2>
+      <h2 className="text-2xl text-center text-green-500 font-semibold mb-6">
+        Manage Reports
+      </h2>
 
       <div className="overflow-x-auto rounded-lg shadow-2xl shadow-green-100">
         <table className="table w-full">
@@ -33,14 +45,20 @@ const AdminMangeReport = () => {
                 className="border-t hover:bg-gray-50 transition-colors"
               >
                 <td className="py-2 px-3">{index + 1}</td>
-                <td className="py-2 px-3 break-all">{report?.reportedName || "Unknown"}</td>
-                <td className="py-2 px-3 break-all">{report?.reportedBy || "N/A"}</td>
+                <td className="py-2 px-3 break-all">
+                  {report?.reportedName || "Unknown"}
+                </td>
+                <td className="py-2 px-3 break-all">
+                  {report?.reportedBy || "N/A"}
+                </td>
                 <td className="py-2 px-3">
                   <div className="flex flex-col sm:flex-row gap-2">
-                    <button className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white w-full sm:w-auto">
-                      Details
-                    </button>
-                    <button className="btn btn-sm bg-red-500 hover:bg-red-600 text-white w-full sm:w-auto">
+                    <Link to={`/productsDetails/${report?.productId}`}>
+                      <button className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white w-full sm:w-auto">
+                        Details
+                      </button>
+                    </Link>
+                    <button onClick={()=>handleCancel(report?.productId)} className="btn btn-sm bg-red-500 hover:bg-red-600 text-white w-full sm:w-auto">
                       Cancel
                     </button>
                   </div>
