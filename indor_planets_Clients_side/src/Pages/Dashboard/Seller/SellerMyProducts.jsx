@@ -1,34 +1,33 @@
-import React from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import axiosInstance from '../../../Utils/axiosInstance';
-import Loader from '../../../Loading/Loader';
-import { toast } from 'react-toastify';
-import { Link } from 'react-router';
+import React from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import axiosInstance from "../../../Utils/axiosInstance";
+import Loader from "../../../Loading/Loader";
+import { toast } from "react-toastify";
+import { Link } from "react-router";
 
 const SellerMyProducts = () => {
   const queryClient = useQueryClient();
 
   const { data: products = [], isPending } = useQuery({
-    queryKey: ['addProductsData'],
+    queryKey: ["addProductsData"],
     queryFn: () =>
-      axiosInstance.get('/addProductsData').then((res) => res.data),
+      axiosInstance.get("/addProductsData").then((res) => res.data),
   });
 
   const deleteProductMutation = useMutation({
     mutationFn: (id) => axiosInstance.delete(`/addProductsData/${id}`),
     onSuccess: () => {
-      toast.success('Product deleted successfully!');
-      queryClient.invalidateQueries({ queryKey: ['addProductsData'] });
+      toast.success("Product deleted successfully!");
+      queryClient.invalidateQueries({ queryKey: ["addProductsData"] });
     },
     onError: () => {
-      toast.error('Failed to delete product.');
+      toast.error("Failed to delete product.");
     },
   });
 
   const handleClick = (id) => {
     deleteProductMutation.mutate(id);
-    };
-    
+  };
 
   if (isPending) {
     return <Loader />;
@@ -69,18 +68,24 @@ const SellerMyProducts = () => {
                   </td>
                   <td className="capitalize">{product?.category}</td>
                   <td>
-                    <span className="rounded-full text-gray-700 bg-amber-400 py-1 px-4">
+                    <span
+                      className={`rounded-full text-gray-700 ${
+                        product?.status === "Pending"
+                          ? "bg-amber-500 text-white"
+                          : product?.status === "reject"
+                          ? "bg-red-500 text-white"
+                          : "bg-green-500 text-white"
+                      } py-1 px-4`}
+                    >
                       {product?.status}
                     </span>
                   </td>
                   <td className="flex items-center mt-3 gap-2">
-                          <Link to={`/dashboard/sellerDetailsPage/${product?._id}`}>
-                               <button  className="btn btn-sm bg-blue-500 hover:bg-blue-700 text-base-200">
-                      Details
-                    </button>
-                          
-                          
-                          </Link>
+                    <Link to={`/dashboard/sellerDetailsPage/${product?._id}`}>
+                      <button className="btn btn-sm bg-blue-500 hover:bg-blue-700 text-base-200">
+                        Details
+                      </button>
+                    </Link>
                     <button
                       onClick={() => handleClick(product._id)}
                       className="btn btn-sm bg-red-500 hover:bg-red-700 text-base-200"

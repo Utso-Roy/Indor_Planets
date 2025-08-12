@@ -55,7 +55,7 @@ const SellerAddProducts = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto my-10 p-6 bg-base-200 shadow-2xl shadow-green-200 rounded-lg">
+    <div className="max-w-4xl mx-auto mt-2 p-6 bg-base-200 shadow-2xl shadow-green-200 rounded-lg">
       <h2 className="text-2xl font-bold mb-6 text-center text-green-600">
         Add New Product
       </h2>
