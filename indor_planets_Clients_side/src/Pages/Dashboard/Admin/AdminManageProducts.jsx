@@ -18,7 +18,7 @@ const AdminManageProducts = () => {
 
   const updateStatusMutation = useMutation({
     mutationFn: ({ id, status }) =>
-      axiosInstance.patch(`/addProductsData/${id}`, { status }),
+      axiosInstance.patch(`/addProductData/${id}`, { status }),
     onSuccess: () => {
       toast.success('Status updated successfully!');
       queryClient.invalidateQueries({ queryKey: ['addProductsData'] });
@@ -75,7 +75,7 @@ const AdminManageProducts = () => {
                   <td>
                     <select
                       className="select select-sm border-gray-300"
-                      value={product?.status || 'pending'}
+                      value={product?.status || 'Pending'}
                       onChange={(e) =>
                         handleStatusChange(product._id, e.target.value)
                       }
