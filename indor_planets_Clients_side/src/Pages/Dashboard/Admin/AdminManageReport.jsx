@@ -1,18 +1,36 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import axiosInstance from "../../../Utils/axiosInstance";
 import Loader from "../../../Loading/Loader";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 
 const AdminMangeReport = () => {
+
+  const queryClient = useQueryClient();
+
   const { data, isLoading, error } = useQuery({
     queryKey: ["reportData"],
     queryFn: () => axiosInstance.get("/reportData").then((res) => res.data),
   });
 
+  const deleteMutation = useMutation({
+    mutationFn: ({id,productId}) => axiosInstance.delete(`/reportData/${id}/${productId}`),
+    onSuccess: () => {
+      toast.success("Report deleted successfully!");
+      queryClient.invalidateQueries(["reportData"])
+      
+    },
+    onError: () => {
+        toast.error("Failed to delete report.");
+    }
 
-  const handleCancel = (id) => {
-    console.log('utso',id)
+
+  })
+
+
+  const handleCancel = (id,productId) => {
+    deleteMutation.mutate({id,productId})
   }
 
   if (isLoading) return <Loader></Loader>;
@@ -58,7 +76,7 @@ const AdminMangeReport = () => {
                         Details
                       </button>
                     </Link>
-                    <button onClick={()=>handleCancel(report?.productId)} className="btn btn-sm bg-red-500 hover:bg-red-600 text-white w-full sm:w-auto">
+                    <button onClick={()=>handleCancel(report?._id , report?.productId)} className="btn btn-sm bg-red-500 hover:bg-red-600 text-white w-full sm:w-auto">
                       Cancel
                     </button>
                   </div>
