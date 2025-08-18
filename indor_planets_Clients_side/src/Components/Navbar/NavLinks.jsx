@@ -29,18 +29,7 @@ const NavLinks = () => {
         </NavLink>
        </button>
       </li>
-      <li>
-        <button className="cursor-target">
-           <NavLink
-          to="/plantCare"
-          className={({ isActive }) =>
-            isActive ? "text-green-600  font-bold" : "text-green-500"
-          }
-        >
-          Plant Care
-        </NavLink>
-       </button>
-      </li>
+      
       <li>
         <button className="cursor-target">
            <NavLink
@@ -62,6 +51,20 @@ const NavLinks = () => {
           }
         >
           Products
+        </NavLink>
+       </button>
+      </li>
+
+
+      <li>
+        <button className="cursor-target">
+           <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive ? "text-green-600  font-bold" : "text-green-500"
+          }
+        >
+          Contact
         </NavLink>
        </button>
       </li>

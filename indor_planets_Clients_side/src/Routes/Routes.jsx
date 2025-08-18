@@ -27,6 +27,7 @@ import SellerProductsDetails from "../Components/SellerProductsDetails/SellerPro
 import ReviewDetailsPage from "../Pages/Dashboard/Admin/ReviewDetails/ReviewDetailsPage";
 import AdminManageProducts from "../Pages/Dashboard/Admin/AdminManageProducts";
 import UserPlantReviews from "../Pages/Dashboard/User/UserPlantReviews";
+import Contact from "../Pages/Contact";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "/plantCare",
         element: <PlantCare></PlantCare>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
       },
       {
         path: "/plantFertilizer",

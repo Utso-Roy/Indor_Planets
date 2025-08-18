@@ -10,6 +10,7 @@ import CareGuides from "../../Components/CareGuides/CareGuides";
 import Delivery from "../../Components/Delivery/Delivery";
 import BestSellerSection from "../../Components/BestSellerSection/BestSellerSection";
 import NewArrivalSection from "../../Components/NewArrivalSection/NewArrivalSection";
+import Contact from "../Contact";
 const Home = () => {
   const navigate = useNavigate();
 
@@ -115,6 +116,10 @@ const Home = () => {
       <section className="my-5">
       
         <ReviewSection></ReviewSection>
+      </section>
+      <section className="mt-5">
+      
+        <Contact></Contact>
       </section>
     </main>
   );
