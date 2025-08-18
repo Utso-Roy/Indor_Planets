@@ -6,7 +6,6 @@ import CountUp from '../CountUp/CountUp';
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '../../Utils/axiosInstance';
 import Loading from '../../Loading/Loading';
-
 interface ReviewType {
   _id?: string;
   user?: string;

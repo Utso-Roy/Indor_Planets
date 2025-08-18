@@ -34,7 +34,7 @@ const Fertilizer = () => {
             <img
               src={fertilizer?.image}
               alt={fertilizer?.name}
-              className="w-full rounded-xl h-46 "
+              className="w-full object-contain rounded-xl h-46 "
             />
             <div className="p-4">
               <h2 className="font-semibold text-md mb-2">

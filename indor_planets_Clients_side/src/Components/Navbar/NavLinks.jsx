@@ -53,6 +53,18 @@ const NavLinks = () => {
         </NavLink>
        </button>
       </li>
+      <li>
+        <button className="cursor-target">
+           <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "text-green-600  font-bold" : "text-green-500"
+          }
+        >
+          Products
+        </NavLink>
+       </button>
+      </li>
     </>
   );
 };

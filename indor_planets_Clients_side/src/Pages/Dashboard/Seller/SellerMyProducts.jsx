@@ -26,7 +26,10 @@ const SellerMyProducts = () => {
   });
 
   const handleClick = (id) => {
+
     deleteProductMutation.mutate(id);
+
+
   };
 
   if (isPending) {
@@ -72,7 +75,7 @@ const SellerMyProducts = () => {
                       className={`rounded-full text-gray-700 ${
                         product?.status === "Pending"
                           ? "bg-amber-500 text-white"
-                          : product?.status === "reject"
+                          : product?.status === "Reject"
                           ? "bg-red-500 text-white"
                           : "bg-green-500 text-white"
                       } py-1 px-4`}

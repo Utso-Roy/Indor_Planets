@@ -1,34 +1,30 @@
-import React from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import axiosInstance from '../../../Utils/axiosInstance';
-import Loader from '../../../Loading/Loader';
-import { toast } from 'react-toastify';
-import { Link } from 'react-router';
+import React from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import axiosInstance from "../../../Utils/axiosInstance";
+import Loader from "../../../Loading/Loader";
+import { toast } from "react-toastify";
+import { Link } from "react-router";
 
 const AdminManageProducts = () => {
   const queryClient = useQueryClient();
 
   const { data: products = [], isPending } = useQuery({
-    queryKey: ['addProductsData'],
+    queryKey: ["addProductsData"],
     queryFn: () =>
-      axiosInstance.get('/addProductsData').then((res) => res.data),
+      axiosInstance.get("/addProductsData").then((res) => res.data),
   });
-
- 
 
   const updateStatusMutation = useMutation({
     mutationFn: ({ id, status }) =>
       axiosInstance.patch(`/addProductData/${id}`, { status }),
     onSuccess: () => {
-      toast.success('Status updated successfully!');
-      queryClient.invalidateQueries({ queryKey: ['addProductsData'] });
+      toast.success("Status updated successfully!");
+      queryClient.invalidateQueries({ queryKey: ["addProductsData"] });
     },
     onError: () => {
-      toast.error('Failed to update status.');
+      toast.error("Failed to update status.");
     },
   });
-
- 
 
   const handleStatusChange = (id, newStatus) => {
     updateStatusMutation.mutate({ id, status: newStatus });
@@ -74,26 +70,36 @@ const AdminManageProducts = () => {
                   <td className="capitalize">{product?.category}</td>
                   <td>
                     <select
-                      className="select select-sm border-gray-300"
-                      value={product?.status || 'Pending'}
+                      className={`select select-sm border-gray-300 
+                        
+                        ${
+                        product?.status === "Pending"
+                          ? "bg-amber-500 text-white"
+                          : product?.status === "Reject"
+                          ? "bg-red-500 text-white"
+                          : "bg-green-500 text-white"
+                      } 
+
+
+                        
+                        
+                        `}
+                      value={product?.status || "Pending"}
                       onChange={(e) =>
                         handleStatusChange(product._id, e.target.value)
                       }
                     >
-                      <option value="pending">Pending</option>
-                      <option value="accept">Accept</option>
-                      <option value="reject">Reject</option>
+                      <option value="Pending">Pending</option>
+                      <option value="Accept">Accept</option>
+                      <option value="Reject">Reject</option>
                     </select>
                   </td>
                   <td className="mt-3">
-                    <Link
-                      to={`/dashboard/sellerDetailsPage/${product?._id}`}
-                    >
+                    <Link to={`/dashboard/sellerDetailsPage/${product?._id}`}>
                       <button className="btn btn-sm bg-blue-500 hover:bg-blue-700 text-base-200">
                         Details
                       </button>
                     </Link>
-                  
                   </td>
                 </tr>
               ))}

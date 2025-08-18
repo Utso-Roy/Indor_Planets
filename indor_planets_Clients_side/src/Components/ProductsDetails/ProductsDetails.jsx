@@ -67,7 +67,7 @@ const ProductsDetails = () => {
       user: user?.displayName,
       userEmail: user?.email,
       showInHome: false,
-      image : user?.photoURL,
+      image: user?.photoURL,
       date: new Date(),
     };
     try {
@@ -81,6 +81,33 @@ const ProductsDetails = () => {
       toast.error("Failed to report product.", error);
     }
   };
+
+const handleClick = (id, quantity) => {
+  const total = {
+    id: id,
+    quantity: quantity,
+    email: user?.email,
+    name: user?.displayName,
+    image: user?.photoURL,
+  };
+
+  axiosInstance.post("/order", total)
+    .then(res => {
+      console.log(res.data.url)
+      if (res.data?.url) {
+        window.location.href = res.data.url;
+        setShowBuyModal(false);
+      } else {
+        toast.error("Payment URL not received. Try again!");
+        console.log("API Response:", res.data);
+      }
+    })
+    .catch(error => {
+      toast.error("Failed to place order");
+      console.error("Order error:", error);
+    });
+};
+
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-base-100 rounded-xl shadow-2xl shadow-green-200 my-10">
@@ -164,7 +191,7 @@ const ProductsDetails = () => {
           {/* Buttons */}
           <div className="flex space-x-4">
             <button
-              className="btn bg-emerald-500 cursor-target cursor-pointer text-white flex-grow"
+              className="btn bg-green-500 cursor-target cursor-pointer text-white flex-grow"
               onClick={() => setShowBuyModal(true)}
             >
               Buy
@@ -198,13 +225,13 @@ const ProductsDetails = () => {
             Total Amount: ৳{" "}
             {(filterData.price * quantity).toLocaleString("en-BD")}
           </p>
+
           <div className="modal-action">
             <button
               className="btn bg-green-500 text-white cursor-target"
-              onClick={() => {
-                toast.success(`${quantity} ${filterData.name} purchased!`);
-                setShowBuyModal(false);
-              }}
+              onClick={() =>
+                handleClick(filterData?._id, filterData.price * quantity)
+              }
             >
               Confirm Purchase
             </button>

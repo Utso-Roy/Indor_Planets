@@ -10,14 +10,12 @@ import PlantCare from "../Pages/PlantCare/PlantCare";
 import Fertilizer from "../Pages/Fertilizer/Fertilizer";
 import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 import DashboardLayout from "../Layouts/DashboardLayouts/DashboardLayout";
-import Dashboard from "../Pages/Sidebar/Sidebar";
 import ProductsDetails from "../Components/ProductsDetails/ProductsDetails";
 import FertilizerDetails from "../Pages/Fertilizer/FertilizerDetails";
 import UserProfile from "../Pages/Dashboard/User/UserProfile";
 import UserReview from "../Pages/Dashboard/User/UserReview";
 import UserProducts from "../Pages/Dashboard/User/UserProducts";
 import UserHome from "../Pages/Dashboard/User/UserHome";
-import UserProfileSetting from "../Pages/Dashboard/User/UserProfileSetting";
 import SellerProfile from "../Pages/Dashboard/Seller/SellerProfile";
 import SellerAddProducts from "../Pages/Dashboard/Seller/SellerAddProducts";
 import SellerMyProducts from "../Pages/Dashboard/Seller/SellerMyProducts";
@@ -29,6 +27,7 @@ import SellerProductsDetails from "../Components/SellerProductsDetails/SellerPro
 import ReviewDetailsPage from "../Pages/Dashboard/Admin/ReviewDetails/ReviewDetailsPage";
 import AdminManageProducts from "../Pages/Dashboard/Admin/AdminManageProducts";
 import UserPlantReviews from "../Pages/Dashboard/User/UserPlantReviews";
+import Success from "../Pages/Success";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -59,19 +58,23 @@ const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
+        path: "/success",
+        element: <Success></Success>,
+      },
+      {
         path: "/learn",
         element: (
-          <PrivateRoute>
-            <Learn></Learn>{" "}
-          </PrivateRoute>
+          
+            <Learn></Learn>
+          
         ),
       },
       {
         path: "/plantCare",
         element: (
-          <PrivateRoute>
-            <PlantCare></PlantCare>{" "}
-          </PrivateRoute>
+          
+            <PlantCare></PlantCare>
+        
         ),
       },
       {

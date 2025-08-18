@@ -26,11 +26,11 @@ const Navbar = () => {
       {/* Top Banner */}
       <div className="bg-green-700 text-white text-sm">
         <div className="flex flex-col md:flex-row justify-around items-center h-auto md:h-[45px] px-4 py-2 gap-2 md:gap-0 text-center">
-          <h3>Free Delivery Above ₹999 | Shop Now</h3>
+          <h3>Free Delivery Above ৳ 999 | Shop Now</h3>
           <h3>
             Buy 2 Get 1 | Use: <span className="font-bold">GREENGHOR</span>
           </h3>
-          <h3>Buy 2 XL @ $35</h3>
+          <h3>Buy 2 XL @ ৳1500</h3>
         </div>
       </div>
 

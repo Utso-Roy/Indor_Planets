@@ -11,7 +11,7 @@ const Products = () => {
   const [limit] = useState(5);
   const [totalPages, setTotalPages] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState(" ");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const Products = () => {
           name="search"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
-          placeholder="Search plants by name..."
+          placeholder ="Search plants by name..."
           className="input cursor-target input-bordered w-full max-w-xs"
         />
         <button

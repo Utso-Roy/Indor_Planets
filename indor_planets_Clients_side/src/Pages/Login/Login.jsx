@@ -174,11 +174,13 @@ const Login = () => {
             </form>
             <button
               onClick={handleGoogleLogin}
-              className="btn bg-green-500 cursor-target  my-3 w-full text-white"
+              className="btn  cursor-target bg-base-200 my-3 w-full text-green-600"
             >
               <FaGoogle />
               Google Login
             </button>
+
+            
           </div>
         </div>
       </div>
