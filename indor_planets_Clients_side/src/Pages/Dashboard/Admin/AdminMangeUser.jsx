@@ -13,7 +13,6 @@ const AdminManageUser = () => {
     queryFn: () => axiosInstance.get('/users').then(res => res.data)
   });
 
-  // Update role mutation
   const updateRoleMutation = useMutation({
     mutationFn: ({ uid, role }) =>
       axiosInstance.put(`/users/${uid}`, { role }).then(res => res.data),
@@ -31,10 +30,13 @@ const AdminManageUser = () => {
     return <Loader></Loader>;
   }
 
+
+
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-6">
       <h2 className="text-2xl text-center text-green-600 font-semibold mb-6">
-        Manage Users
+        Manage Users {users?.length}
       </h2>
 
       <div className="overflow-x-auto rounded-lg shadow-2xl shadow-green-100">

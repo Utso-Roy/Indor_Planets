@@ -23,7 +23,10 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
     getValues
-  } = useForm();
+  } = useForm(  {defaultValues: {
+    email: "kezacati@mailinator.com",   
+    password: "Pa$$w0rd!",      
+  }});
 
   const onsubmit = (data) => {
     const { email, password } = data;
