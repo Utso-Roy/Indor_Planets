@@ -23,8 +23,9 @@ const Contact = () => {
     <div className="min-h-screen bg-emerald-50/60">
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0  pointer-events-none" />
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-16 pb-10">
+              <div className="absolute inset-0  pointer-events-none" />
+              {/* mx-auto max-w-6xl */}
+        <div className=" px-4 sm:px-6 pt-16 pb-10">
           <motion.div
             className="text-center"
             initial="hidden"
@@ -200,7 +201,7 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="cursor-target cursor-pointer inline-flex items-center justify-center rounded-2xl px-5 py-3 bg-emerald-600 text-white font-medium shadow hover:bg-emerald-700 active:scale-[.98] transition"
+                className="cursor-target cursor-pointer inline-flex items-center justify-center btn px-5 py-3 bg-emerald-600 text-white font-medium shadow hover:bg-emerald-700 active:scale-[.98] transition"
               >
                 Send Message
               </button>

@@ -11,6 +11,8 @@ import Delivery from "../../Components/Delivery/Delivery";
 import BestSellerSection from "../../Components/BestSellerSection/BestSellerSection";
 import NewArrivalSection from "../../Components/NewArrivalSection/NewArrivalSection";
 import Contact from "../Contact";
+import FaqSection from "../FaqSection";
+import InstagramFeedSection from "../InstagramFeedSection";
 const Home = () => {
   const navigate = useNavigate();
 
@@ -108,6 +110,14 @@ const Home = () => {
 
       <section>
         <CareGuides></CareGuides>
+      </section>
+      <section>
+        <FaqSection></FaqSection>
+      </section>
+
+      <section className="my-5">
+
+        <InstagramFeedSection></InstagramFeedSection>
       </section>
 
       <section>
