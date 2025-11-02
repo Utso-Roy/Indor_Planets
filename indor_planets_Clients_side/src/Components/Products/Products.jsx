@@ -11,7 +11,7 @@ const Products = () => {
   const [limit] = useState(5);
   const [totalPages, setTotalPages] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchInput, setSearchInput] = useState(" ");
+  const [searchInput, setSearchInput] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -45,13 +45,14 @@ const Products = () => {
     <div className="max-w-6xl mx-auto p-4">
       <form onSubmit={handleSearch} className="flex justify-center mb-6 gap-2">
         <input
-          type="text"
-          name="search"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          placeholder ="Search plants by name..."
-          className="input cursor-target input-bordered w-full max-w-xs"
-        />
+  type="text"
+  name="search"
+  value={searchInput}
+  onChange={(e) => setSearchInput(e.target.value)}
+  placeholder="Search plants by name..."
+  className="input input-bordered w-full max-w-xs text-gray-900 placeholder-gray-400 bg-white cursor-target dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
+/>
+
         <button
           type="submit"
           className="btn cursor-target bg-gradient-to-r from-green-400 to-green-500 text-white"
