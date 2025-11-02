@@ -44,7 +44,7 @@ const ReviewSection: React.FC = () => {
   }
 
   return (
-    <div className="bg-green-50 py-14 px-4 md:px-12 lg:px-24">
+    <div className="bg-green-50 py-14 px-4 md:px-6 ">
       {/* Header */}
       <div className="text-center mb-10">
         <h2 className="text-[2rem] my-3">

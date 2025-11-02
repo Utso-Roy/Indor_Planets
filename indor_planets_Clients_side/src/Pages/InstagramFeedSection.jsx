@@ -14,7 +14,7 @@ const InstagramFeedSection = () => {
 
   return (
     <section className="bg-green-50 py-12">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className=" px-6">
         {/* Section Title */}
         <GradientText
             colors={['#4ade80', '#bef264', '#4ade80']}

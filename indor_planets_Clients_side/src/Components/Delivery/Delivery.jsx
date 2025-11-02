@@ -65,7 +65,7 @@ const Delivery = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 py-16 px-4 md:px-16 overflow-hidden">
+    <div className="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 py-16 px-4 md:px-6 overflow-hidden">
       <div className="text-center mb-12">
         <h2 className="text-center  text-[2rem] my-3">
           <GradientText

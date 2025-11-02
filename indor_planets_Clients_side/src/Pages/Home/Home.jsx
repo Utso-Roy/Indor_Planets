@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <main className="">
       <div className="min-h-screen bg-gradient-to-r from-green-100 via-lime-100 to-green-100 flex items-center justify-center px-6 py-1">
-        <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div className=" w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           {/* Text Section */}
           <div
             data-aos="fade-right"
@@ -85,7 +85,7 @@ const Home = () => {
             showBorder={false}
             className="custom-class"
           >
-           Best Selling Plants
+            Best Selling Plants
           </GradientText>
         </h2>
         <div>
@@ -103,9 +103,9 @@ const Home = () => {
             Plants Category
           </GradientText>
         </h2>
-        <div  className="bg-green-600 cursor-target">
-           <Section1></Section1>
-       </div>
+        <div className="bg-green-600 cursor-target">
+          <Section1></Section1>
+        </div>
       </section>
 
       <section>
@@ -116,7 +116,6 @@ const Home = () => {
       </section>
 
       <section className="my-5">
-
         <InstagramFeedSection></InstagramFeedSection>
       </section>
 
@@ -124,11 +123,9 @@ const Home = () => {
         <Delivery></Delivery>
       </section>
       <section className="my-5">
-      
         <ReviewSection></ReviewSection>
       </section>
       <section className="mt-5">
-      
         <Contact></Contact>
       </section>
     </main>

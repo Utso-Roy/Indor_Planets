@@ -7,7 +7,7 @@ import GradientText from '../GradientText/GradientText';
 const CareGuides = () => {
   const navigate = useNavigate()
   return (
-    <div className="bg-green-50 my-5 py-14 px-6 md:px-16 lg:px-24">
+    <div className="bg-green-50 w-full my-5 py-14 px-6 md:px-16 lg:px-24">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         
         <motion.div
