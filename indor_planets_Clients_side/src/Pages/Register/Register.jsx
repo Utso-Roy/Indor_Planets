@@ -5,7 +5,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
-import { updateProfile } from "firebase/auth"; 
+import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router";
 import axiosInstance from "../../Utils/axiosInstance";
 
@@ -13,7 +13,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword(!showPassword);
   const { signUp, setUser } = useContext(AuthContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -31,7 +31,7 @@ const Register = () => {
 
     try {
       const res = await fetch(
-        `https://api.imgbb.com/1/upload?key=f3e962a8a0a96e0fed778a75628796dc`,
+        `https://api.imgbb.com/1/upload?key=a2bba992df1aac5264ec036018c2438b`,
         {
           method: "POST",
           body: formData,
@@ -47,7 +47,6 @@ const Register = () => {
           .then(async (result) => {
             const loggedUser = result.user;
 
-           
             await updateProfile(loggedUser, {
               displayName: username,
               photoURL: imageUrl,
@@ -59,20 +58,19 @@ const Register = () => {
               photoURL: imageUrl,
             });
 
-          const userData = {
-            name: username,
-            email: email,
-            photo: imageUrl,
-            uid: loggedUser.uid,
-            role :'user'
-          };
+            const userData = {
+              name: username,
+              email: email,
+              photo: imageUrl,
+              uid: loggedUser.uid,
+              role: "user",
+            };
 
-    
-          await axiosInstance.post("/users", userData);
-
-
+            await axiosInstance.post("/users", userData);
             toast.success("Registration successful");
-            navigate('/')
+            window.scrollTo(0, 0);
+            navigate("/");
+
           })
           .catch((error) => {
             toast.error("Sign up error: " + error.message);
@@ -84,11 +82,6 @@ const Register = () => {
       toast.error("Something went wrong: " + err.message);
     }
   };
-
-
-
-
-
 
   return (
     <div className="min-h-screen  p-4 bg-base-300 flex justify-center items-center px-4">
