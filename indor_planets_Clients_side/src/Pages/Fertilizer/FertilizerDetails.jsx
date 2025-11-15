@@ -60,7 +60,7 @@ const FertilizerDetails = () => {
       rating: rating,
       user: user?.displayName || "Anonymous",
       userEmail: user?.email || "no-email",
-      userImage : user?.photoURL ,
+      userImage: user?.photoURL,
     };
 
     mutate(reviewData);
@@ -68,7 +68,7 @@ const FertilizerDetails = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-base-100 rounded-xl shadow-2xl shadow-green-100 my-10">
+    <div className="max-w-5xl mx-auto p-6 bg-base-100 dark:bg-gray-50 rounded-xl shadow-2xl shadow-green-100 my-10">
       {/* Back Button */}
       <div className="mb-6">
         <button
@@ -94,7 +94,9 @@ const FertilizerDetails = () => {
             </h2>
             <p className="text-gray-700 mb-4">{fertilizer?.description}</p>
             <p className="mb-2">
-              <span className="text-amber-500 font-semibold">Suitable For:</span>{" "}
+              <span className="text-amber-500 font-semibold">
+                Suitable For:
+              </span>{" "}
               {fertilizer?.suitableFor.map((item, idx) => (
                 <span
                   key={idx}
@@ -111,13 +113,22 @@ const FertilizerDetails = () => {
 
             {/* Quantity */}
             <div className="flex items-center gap-4 mb-4">
-              <label className="font-medium text-gray-600">Quantity:</label>
+              <label className="font-medium text-gray-600 ">Quantity:</label>
               <input
                 type="number"
                 min="1"
                 value={quantity}
                 onChange={(e) => setQuantity(Number(e.target.value))}
-                className="input w-24 cursor-target"
+                className=" input 
+    w-24 
+    cursor-target 
+    border
+    border-gray-300
+    dark:border-gray-400
+    dark:bg-gray-100
+    dark:text-gray-700
+    
+    "
               />
             </div>
 
@@ -130,13 +141,13 @@ const FertilizerDetails = () => {
           {/* Action Buttons */}
           <div className="flex gap-4 mt-4">
             <button
-              className="btn bg-green-600 text-white flex-grow cursor-target"
+              className="btn bg-green-600 dark:border-none text-white flex-grow cursor-target"
               onClick={() => setShowBuyModal(true)}
             >
               Buy Now
             </button>
             <button
-              className="btn bg-amber-500 text-white flex-grow cursor-target"
+              className="btn bg-amber-500 dark:border-none text-white flex-grow cursor-target"
               onClick={() => setShowReviewModal(true)}
             >
               Write Review
@@ -151,12 +162,12 @@ const FertilizerDetails = () => {
           <p className="mb-4 text-green-600 font-medium">
             You are buying {quantity}x <strong>{fertilizer.name}</strong>
           </p>
-          <p className="mb-4 font-bold text-lg">
+          <p className="mb-4 font-bold dark:text-gray-800 text-lg">
             Total Amount: ৳ {totalPrice.toLocaleString("en-BD")}
           </p>
           <div className="modal-action">
             <button
-              className="btn bg-green-600 text-white cursor-target"
+              className="btn bg-green-600 dark:border-none text-white cursor-target"
               onClick={() => {
                 toast.success(
                   `${quantity} ${fertilizer.name} purchased successfully!`
@@ -194,13 +205,18 @@ const FertilizerDetails = () => {
               placeholder="Write your review here..."
               name="textArea"
               required
-              className="textarea textarea-bordered w-full mb-4 cursor-target"
+              className="textarea textarea-bordered
+              
+                border-gray-300
+    dark:border-gray-500
+    dark:bg-gray-100
+              w-full mb-4 cursor-target"
             />
 
             <div className="modal-action">
               <button
                 type="submit"
-                className="btn bg-amber-500 text-white cursor-target"
+                className="btn dark:border-none bg-amber-500 text-white cursor-target"
                 disabled={rating === 0 || isSubmitting}
               >
                 {isSubmitting ? "Submitting..." : "Submit"}

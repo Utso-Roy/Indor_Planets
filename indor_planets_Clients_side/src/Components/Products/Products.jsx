@@ -42,20 +42,30 @@ const Products = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto p-4">
+    <div className="max-w-6xl  mx-auto p-4">
       <form onSubmit={handleSearch} className="flex justify-center mb-6 gap-2">
-        <input
+<input
   type="text"
   name="search"
   value={searchInput}
   onChange={(e) => setSearchInput(e.target.value)}
   placeholder="Search plants by name..."
-  className="input input-bordered w-full max-w-xs text-gray-900 placeholder-gray-400 bg-white cursor-target dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
+  className="
+    input input-bordered w-full max-w-xs 
+    text-gray-900 placeholder-gray-400 
+    bg-white cursor-target 
+
+    border border-gray-300   
+    dark:bg-white dark:text-black dark:placeholder-gray-800 
+    dark:border-gray-500
+  "
 />
+
+
 
         <button
           type="submit"
-          className="btn cursor-target bg-gradient-to-r from-green-400 to-green-500 text-white"
+          className="btn cursor-target border-none bg-green-500 dark:bg-green-500 dark:border-none text-white"
         >
           Search
         </button>
@@ -89,7 +99,7 @@ const Products = () => {
               to={`/productsDetails/${product?._id}`}>
               <motion.div
                 
-                className="card bg-base-100  cursor-target cursor-pointer shadow-xl"
+                className="card  dark:bg-white bg-white  cursor-target cursor-pointer shadow-xl"
                 custom={index}
                 variants={cardVariants}
                 initial="hidden"
@@ -105,7 +115,7 @@ const Products = () => {
                   />
                 </figure>
                 <div className="card-body">
-                  <h2 className="card-title text-md">{product?.name}</h2>
+                  <h2 className="card-title text-gray-800 dark:text-black text-md">{product?.name}</h2>
                   <p className="text-green-400 font-semibold text-lg">
                     ৳ {product?.price?.toLocaleString("en-BD")}
                   </p>
@@ -138,39 +148,72 @@ const Products = () => {
         </p>
       )}
 
-      {totalPages > 1 && (
-        <div className="join flex cursor-target justify-center mt-10">
-          <button
-            onClick={() => setPage((p) => Math.max(p - 1, 1))}
-            disabled={page === 1}
-            className="join-item btn hover:bg-green-500 hover:text-white"
-          >
-            Prev
-          </button>
+    {totalPages > 1 && (
+  <div className="join flex cursor-target justify-center mt-10">
+    
+    {/* Prev Button */}
+    <button
+      onClick={() => setPage((p) => Math.max(p - 1, 1))}
+      disabled={page === 1}
+      className="
+        join-item btn 
+        bg-white text-gray-800 border border-gray-300
+        hover:bg-green-500 hover:text-white
 
-          {[...Array(totalPages).keys()].map((num) => (
-            <button
-              key={num}
-              onClick={() => setPage(num + 1)}
-              className={`join-item btn ${
-                page === num + 1
-                  ? "btn-active bg-green-500 text-white"
-                  : "border-2"
-              }`}
-            >
-              {num + 1}
-            </button>
-          ))}
+        dark:bg-gray-100 dark:text-green-500 
+       
+        dark:hover:bg-green-500 dark:hover:text-white
+      "
+    >
+      Prev
+    </button>
 
-          <button
-            onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
-            disabled={page === totalPages}
-            className="join-item hover:bg-green-500 hover:text-white btn"
-          >
-            Next
-          </button>
-        </div>
-      )}
+    {/* Number Buttons */}
+    {[...Array(totalPages).keys()].map((num) => (
+      <button
+        key={num}
+        onClick={() => setPage(num + 1)}
+        className={`
+          join-item btn dark:border-gray-400 border
+          ${page === num + 1
+            ? `
+              bg-green-500 text-white 
+              dark:bg-green-500 dark:text-white
+            `
+            : `
+              bg-white text-gray-800  border-gray-300
+              hover:bg-green-500 hover:text-white
+
+              dark:bg-gray-100 dark:text-green-500
+              dark:border-gray-none
+              dark:hover:bg-green-500 dark:hover:text-white
+            `
+          }
+        `}
+      >
+        {num + 1}
+      </button>
+    ))}
+
+    {/* Next Button */}
+    <button
+      onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
+      disabled={page === totalPages}
+      className="
+        join-item btn 
+        bg-white text-gray-800 border border-gray-300
+        hover:bg-green-500 hover:text-white
+
+        dark:bg-gray-100 dark:border-1  dark:text-green-500
+        dark:border-gray-200
+        dark:hover:bg-green-500 dark:hover:text-white
+      "
+    >
+      Next
+    </button>
+  </div>
+)}
+
     </div>
   );
 };

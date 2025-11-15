@@ -28,7 +28,7 @@ const ReviewDetailsPage = () => {
     const { name, description, image, light } = findData;
 
     return (
-        <div className="max-w-4xl mx-auto my-10 p-6 bg-base-200 rounded-xl shadow-green-200 shadow-2xl">
+        <div className="max-w-4xl mx-auto my-10 dark:bg-gray-50 p-6 bg-base-200 rounded-xl shadow-green-200 shadow-2xl">
             <div className="mb-4">
                 <button
                     onClick={() => navigate(-1)}

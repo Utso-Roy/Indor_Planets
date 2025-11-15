@@ -89,12 +89,12 @@ const Navbar = () => {
           {/* Navbar End (User Section) */}
           <div className="navbar-end gap-2">
             {user ? (
-              <div className="dropdown dropdown-hover dropdown-end cursor-pointer">
+              <div className="dropdown   dropdown-hover dropdown-end cursor-pointer">
                 <button
-                  className="btn btn-ghost cursor-target btn-circle avatar tooltip"
+                  className="btn btn-ghost cursor-target btn-circle  avatar tooltip"
                   data-tip={user?.displayName || "User"}
                 >
-                  <div className="w-10 rounded-full ring ring-success ring-offset-base-100 ring-offset-2">
+                  <div className="w-10 rounded-full  ring ring-success dark:ring-offset-base-100ring-offset-base-100 ring-offset-2">
                     <img
                       src={
                         user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"
@@ -104,7 +104,7 @@ const Navbar = () => {
                   </div>
                 </button>
 
-                <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-64">
+                <ul className="dropdown-content z-[1] dark:bg-gray-100  bg-gray-50  menu p-2 shadow-lg rounded-box w-64">
                  
 
                   <li>

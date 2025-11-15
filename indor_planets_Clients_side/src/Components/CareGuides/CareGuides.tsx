@@ -39,7 +39,7 @@ const CareGuides = () => {
           >
             Plant Care Instructions
             </GradientText>
-            <button onClick={()=>navigate('/plantCare')} className='btn cursor-target bg-green-500 text-white'>Care Guides</button>
+            <button onClick={()=>navigate('/plantCare')} className='btn dark:border-none cursor-target bg-green-500 text-white'>Care Guides</button>
         </h2>
          
 

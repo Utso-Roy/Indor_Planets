@@ -110,7 +110,7 @@ const handleClick = (id, quantity) => {
 
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-base-100 rounded-xl shadow-2xl shadow-green-200 my-10">
+    <div className="max-w-4xl mx-auto p-6 bg-base-100 dark:bg-gray-50 rounded-xl shadow-2xl shadow-green-200 my-10">
       {/* Back Button */}
       <div className="mb-6">
         <button
@@ -176,7 +176,7 @@ const handleClick = (id, quantity) => {
               min="1"
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
-              className="input border-1 border-amber-400 w-20 text-amber-500 cursor-target"
+              className="input border-1 border-amber-400 dark:bg-gray-50 w-20 text-amber-500 cursor-target"
             />
           </div>
 
@@ -191,19 +191,19 @@ const handleClick = (id, quantity) => {
           {/* Buttons */}
           <div className="flex space-x-4">
             <button
-              className="btn bg-green-500 cursor-target cursor-pointer text-white flex-grow"
+              className="btn dark:border-none dark:text-white bg-green-500 cursor-target cursor-pointer text-white flex-grow"
               onClick={() => setShowBuyModal(true)}
             >
               Buy
             </button>
             <button
-              className="btn bg-amber-500 cursor-target cursor-pointer text-white flex-grow"
+              className="btn bg-amber-500 dark:border-none cursor-target cursor-pointer text-white flex-grow"
               onClick={() => setShowReviewModal(true)}
             >
               Review
             </button>
             <button
-              className="btn bg-red-500 cursor-target cursor-pointer text-white flex-grow"
+              className="btn dark:border-none bg-red-500 cursor-target cursor-pointer text-white flex-grow"
               onClick={() => setShowReportModal(true)}
             >
               Report
@@ -221,14 +221,14 @@ const handleClick = (id, quantity) => {
           <p className="mb-4 text-gray-700 font-medium">
             You are buying {quantity}x {filterData.name}
           </p>
-          <p className="mb-4 font-bold text-lg">
+          <p className="mb-4 dark:text-gray-700 font-bold text-lg">
             Total Amount: ৳{" "}
             {(filterData.price * quantity).toLocaleString("en-BD")}
           </p>
 
           <div className="modal-action">
             <button
-              className="btn bg-green-500 text-white cursor-target"
+              className="btn bg-green-500 dark:border-none text-white cursor-target"
               onClick={() =>
                 handleClick(filterData?._id, filterData.price * quantity)
               }
@@ -283,7 +283,7 @@ const handleClick = (id, quantity) => {
                       value={star}
                       checked={rating === star}
                       onChange={() => setRating(star)}
-                      className="hidden"
+                      className="hidden "
                     />
                     <span
                       className={`text-2xl cursor-pointer ${
@@ -300,13 +300,13 @@ const handleClick = (id, quantity) => {
               placeholder="Write your review here..."
               name="textArea"
               required
-              className="textarea cursor-target textarea-bordered w-full mb-4"
+              className="textarea dark:textarea-bordered  cursor-target textarea-bordered w-full mb-4"
             ></textarea>
             <div className="modal-action">
               <button
                 type="submit"
                 disabled={review}
-                className="btn cursor-target cursor-pointer bg-amber-500 text-white"
+                className="btn cursor-target dark:border-none cursor-pointer bg-amber-500 text-white"
               >
                 {review ? "Reviewed" : "submit"}
               </button>

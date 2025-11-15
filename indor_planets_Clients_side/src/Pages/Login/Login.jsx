@@ -10,7 +10,8 @@ import { FaGoogle } from "react-icons/fa";
 import axiosInstance from "../../Utils/axiosInstance";
 
 const Login = () => {
-  const { signIn, setUser, googleLogin,resetPassword } = useContext(AuthContext);
+  const { signIn, setUser, googleLogin, resetPassword } =
+    useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword(!showPassword);
   const location = useLocation();
@@ -22,30 +23,31 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-    getValues
-  } = useForm(  {defaultValues: {
-    email: "kezacati@mailinator.com",   
-    password: "Pa$$w0rd!",      
-  }});
+    getValues,
+  } = useForm({
+    defaultValues: {
+      email: "kezacati@mailinator.com",
+      password: "Pa$$w0rd!",
+    },
+  });
 
   const onsubmit = (data) => {
     const { email, password } = data;
     signIn(email, password)
-      .then(async(data) => {
+      .then(async (data) => {
         setUser(data.user);
         toast.success("Login Successfully");
-        
+
         try {
           const idToken = await data.user.getIdToken();
-        const response = await axiosInstance.post("/jwt", {
-          token: idToken,
-        });
-        const token = response.data.token;
-        localStorage.setItem("access-token", token);
-      } catch (error) {
-        console.error("JWT token fetch failed", error);
-      }
-
+          const response = await axiosInstance.post("/jwt", {
+            token: idToken,
+          });
+          const token = response.data.token;
+          localStorage.setItem("access-token", token);
+        } catch (error) {
+          console.error("JWT token fetch failed", error);
+        }
 
         navigate(from, { replace: true });
       })
@@ -54,7 +56,6 @@ const Login = () => {
         console.log(error);
       });
   };
-  
 
   const handleGoogleLogin = () => {
     googleLogin()
@@ -70,31 +71,24 @@ const Login = () => {
       });
   };
 
-
-
   const handlePassword = () => {
- 
-    const email = getValues("email"); 
-    console.log(email)
-
-  if (!email) {
-    toast.error("Please enter your email first");
-    return;
-  }
-  resetPassword(email)
-    .then(() => {
-      toast.success("Password reset email sent!");
-    })
-    .catch((error) => {
-      toast.error("Failed to send reset email");
-      console.log(error);
-    });
-
-
-  }
+    const email = getValues("email");
+    if (!email) {
+      toast.error("Please enter your email first");
+      return;
+    }
+    resetPassword(email)
+      .then(() => {
+        toast.success("Password reset email sent!");
+      })
+      .catch((error) => {
+        toast.error("Failed to send reset email");
+        console.log(error);
+      });
+  };
 
   return (
-    <div className="min-h-screen bg-base-300 flex justify-center items-center px-4">
+    <div className="min-h-screen bg-gray-100 flex justify-center items-center px-4">
       <div className="bg-white  rounded-xl shadow-2xl w-full max-w-3xl  p-6 lg:p-10">
         <div className="bg-gradient-to-t from-green-100 via-lime-100 to-green-50 flex flex-col lg:flex-row items-center overflow-hidden">
           {/* Left: Animation */}
@@ -114,10 +108,12 @@ const Login = () => {
             <form onSubmit={handleSubmit(onsubmit)} className="space-y-4">
               {/* Email */}
               <div>
-                <label className="label">Email</label>
+                <label className="label text-gray-700 dark:text-gray-800">
+                  Email
+                </label>
                 <input
                   type="email"
-                  className="input cursor-target input-bordered w-full"
+                  className="input input-bordered w-full cursor-target bg-white dark:bg-white text-gray-900 dark:text-gray-900"
                   placeholder="Enter your email"
                   {...register("email", {
                     required: "Email is required",
@@ -132,11 +128,13 @@ const Login = () => {
 
               {/* Password */}
               <div>
-                <label className="label">Password</label>
+                <label className="label text-gray-700 dark:text-gray-800">
+                  Password
+                </label>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
-                    className="input cursor-target input-bordered w-full pr-10"
+                    className="input input-bordered w-full pr-10 cursor-target bg-white dark:bg-white text-gray-900 dark:text-gray-900"
                     placeholder="Enter your password"
                     {...register("password", {
                       required: "Password is required",
@@ -152,9 +150,8 @@ const Login = () => {
                       },
                     })}
                   />
-
                   <span
-                    className="absolute top-3 right-3 text-xl text-gray-500 cursor-pointer"
+                    className="absolute top-3 right-3 text-xl text-gray-500 dark:text-gray-500 cursor-pointer"
                     onClick={togglePassword}
                   >
                     {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
@@ -165,25 +162,27 @@ const Login = () => {
 
               {/* Forgot password */}
               <div className="text-right">
-                <button onClick={handlePassword} className="link link-hover cursor-target text-sm text-green-600">
+                <button
+                  onClick={handlePassword}
+                  className="link link-hover cursor-target text-sm text-green-600 dark:text-green-600"
+                >
                   Forgot password?
                 </button>
               </div>
 
               {/* Login Button */}
-              <button className="btn bg-green-500 cursor-target w-full text-white">
+              <button className="btn bg-green-500 border-none cursor-target w-full text-white">
                 Login
               </button>
             </form>
+
             <button
               onClick={handleGoogleLogin}
-              className="btn  cursor-target bg-base-200 my-3 w-full text-green-600"
+              className="btn  cursor-target bg-gray-100 border-none my-3 w-full text-green-600"
             >
               <FaGoogle />
               Google Login
             </button>
-
-            
           </div>
         </div>
       </div>

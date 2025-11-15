@@ -81,7 +81,7 @@ const ReviewSection: React.FC = () => {
                   className="w-10 h-10 rounded-full mr-3 border border-green-300"
                 />
                 <div>
-                  <h4 className="text-green-800 font-semibold text-sm">
+                  <h4 className="text-green-800  font-semibold text-sm">
                     {item.user || 'Anonymous'}
                   </h4>
                   <span className="text-[8px] text-gray-500">

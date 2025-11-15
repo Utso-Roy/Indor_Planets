@@ -201,7 +201,7 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="cursor-target cursor-pointer inline-flex items-center justify-center btn px-5 py-3 bg-emerald-600 text-white font-medium shadow hover:bg-emerald-700 active:scale-[.98] transition"
+                className="cursor-target dark:border-none cursor-pointer inline-flex items-center justify-center btn px-5 py-3 bg-emerald-600 text-white font-medium shadow hover:bg-emerald-700 active:scale-[.98] transition"
               >
                 Send Message
               </button>

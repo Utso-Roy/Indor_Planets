@@ -37,7 +37,7 @@ const FertilizerReviewProducts = () => {
                   className="object-cover w-12 h-12 rounded-full"
                 />
                 <div>
-                  <h4 className="font-bold">{singleData.user}</h4>
+                  <h4 className="font-bold dark:text-green-600">{singleData.user}</h4>
                   <span className="text-[8px] text-gray-600">
                     {singleData?.userEmail}
                   </span>
