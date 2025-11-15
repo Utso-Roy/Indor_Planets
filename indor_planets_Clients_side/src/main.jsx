@@ -4,6 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { RouterProvider } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import "primereact/resources/themes/arya-green/theme.css"
 
 import router from "./Routes/Routes.jsx";
 import AuthProvider from "./Components/AuthProvider/AuthProvider.jsx";
