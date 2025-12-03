@@ -68,7 +68,7 @@ const FertilizerDetails = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-base-100 dark:bg-gray-50 rounded-xl shadow-2xl shadow-green-100 my-10">
+    <div className="max-w-5xl mx-auto p-6 bg-gray-100 dark:bg-gray-50 rounded-xl shadow-2xl shadow-green-100 my-10">
       {/* Back Button */}
       <div className="mb-6">
         <button
@@ -123,6 +123,8 @@ const FertilizerDetails = () => {
     w-24 
     cursor-target 
     border
+    text-black
+    bg-gray-100
     border-gray-300
     dark:border-gray-400
     dark:bg-gray-100
@@ -141,13 +143,13 @@ const FertilizerDetails = () => {
           {/* Action Buttons */}
           <div className="flex gap-4 mt-4">
             <button
-              className="btn bg-green-600 dark:border-none text-white flex-grow cursor-target"
+              className="btn bg-green-600 dark:border-none border-none text-white flex-grow cursor-target"
               onClick={() => setShowBuyModal(true)}
             >
               Buy Now
             </button>
             <button
-              className="btn bg-amber-500 dark:border-none text-white flex-grow cursor-target"
+              className="btn bg-amber-500 dark:border-non border-none text-white flex-grow cursor-target"
               onClick={() => setShowReviewModal(true)}
             >
               Write Review
@@ -162,12 +164,12 @@ const FertilizerDetails = () => {
           <p className="mb-4 text-green-600 font-medium">
             You are buying {quantity}x <strong>{fertilizer.name}</strong>
           </p>
-          <p className="mb-4 font-bold dark:text-gray-800 text-lg">
+          <p className="mb-4 font-bold text-gray-800 dark:text-gray-800 text-lg">
             Total Amount: ৳ {totalPrice.toLocaleString("en-BD")}
           </p>
           <div className="modal-action">
             <button
-              className="btn bg-green-600 dark:border-none text-white cursor-target"
+              className="btn bg-green-600  border-none dark:border-none text-white cursor-target"
               onClick={() => {
                 toast.success(
                   `${quantity} ${fertilizer.name} purchased successfully!`
@@ -210,6 +212,8 @@ const FertilizerDetails = () => {
                 border-gray-300
     dark:border-gray-500
     dark:bg-gray-100
+    bg-gray-50
+    text-black
               w-full mb-4 cursor-target"
             />
 

@@ -21,7 +21,7 @@ const Home = () => {
   }, []);
   return (
     <main className="">
-      <div className="min-h-screen bg-gradient-to-r from-green-100 via-lime-100 to-green-100   flex items-center justify-center px-6 py-1">
+      <div className=" bg-gradient-to-r from-green-100 via-lime-100 to-green-100   flex items-center justify-center px-6 py-1">
         <div className=" w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           {/* Text Section */}
           <div

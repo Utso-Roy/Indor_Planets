@@ -51,7 +51,7 @@ const InstagramFeedSection = () => {
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn bg-green-600 dark:border-none text-white cursor-target cursor-pointer hover:bg-green-700 px-6 rounded-full shadow-md"
+            className="btn bg-green-600 dark:border-none border-none text-white cursor-target cursor-pointer hover:bg-green-700 px-6 rounded-full shadow-md"
           >
             View More on Instagram
           </a>
