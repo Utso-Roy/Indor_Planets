@@ -6,6 +6,7 @@ import NavLinks from "./NavLinks";
 import { MdDashboard } from "react-icons/md";
 import { FaSignOutAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
+import Container from "../../Container/Container";
 
 const Navbar = () => {
   const { user, logOut, setUser } = useContext(AuthContext);
@@ -24,19 +25,27 @@ const Navbar = () => {
   return (
     <>
       {/* Top Banner */}
-      <div className="bg-green-700 text-white text-sm">
-        <div className="flex flex-col md:flex-row justify-around items-center h-auto md:h-[45px] px-4 py-2 gap-2 md:gap-0 text-center">
+
+
+        
+              <div className="bg-green-700 text-white text-sm">
+          <Container>
+            
+            <div className="flex flex-col md:flex-row justify-around items-center h-auto md:h-[45px] px-4 py-2 gap-2 md:gap-0 text-center">
           <h3>Free Delivery Above ৳ 999 | Shop Now</h3>
           <h3>
             Buy 2 Get 1 | Use: <span className="font-bold">GREENGHOR</span>
           </h3>
           <h3>Buy 2 XL @ ৳1500</h3>
         </div>
+        </Container>
       </div>
 
       {/* Navbar */}
       <div className="sticky top-0 z-50 bg-[#F5F5F5] shadow-sm">
-        <div className="navbar">
+        <Container>
+
+          <div className="navbar">
           {/* Navbar Start (Mobile + Logo) */}
           <div className="navbar-start">
             {/* Mobile Menu */}
@@ -155,7 +164,9 @@ const Navbar = () => {
             )}
           </div>
         </div>
+        </Container>
       </div>
+
     </>
   );
 };

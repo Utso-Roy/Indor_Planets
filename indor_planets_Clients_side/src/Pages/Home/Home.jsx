@@ -13,6 +13,7 @@ import NewArrivalSection from "../../Components/NewArrivalSection/NewArrivalSect
 import Contact from "../Contact";
 import FaqSection from "../FaqSection";
 import InstagramFeedSection from "../InstagramFeedSection";
+import Container from "../../Container/Container";
 const Home = () => {
   const navigate = useNavigate();
 
@@ -20,9 +21,13 @@ const Home = () => {
     AOS.init();
   }, []);
   return (
-    <main className="">
+  
+
+      <main className="">
       <div className=" bg-gradient-to-r from-green-100 via-lime-100 to-green-100   flex items-center justify-center px-6 py-1">
-        <div className=" w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <Container>
+            
+                    <div className=" w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           {/* Text Section */}
           <div
             data-aos="fade-right"
@@ -61,6 +66,7 @@ const Home = () => {
             />
           </div>
         </div>
+</Container>
       </div>
       <section>
         <h2 className="text-center  text-[2rem] my-3">
@@ -93,7 +99,7 @@ const Home = () => {
         </div>
       </section>
       <section>
-        <h2 className="text-center  text-[2rem] my-3">
+        <h2 className="text-center py-10 text-[2rem] my-3">
           <GradientText
             colors={["#4ade80", "#bef264", "#4ade80"]}
             animationSpeed={3}
@@ -127,8 +133,11 @@ const Home = () => {
       </section>
       <section className="mt-5">
         <Contact></Contact>
+        
       </section>
     </main>
+
+    
   );
 };
 

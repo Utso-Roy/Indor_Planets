@@ -3,6 +3,7 @@ import { motion, Variants } from "framer-motion";
 import axiosInstance from "../../Utils/axiosInstance";
 import { Link } from "react-router";
 import Loading from "../../Loading/Loading";
+import Container from "../../Container/Container";
 
 interface Plant {
   _id: string;
@@ -48,11 +49,13 @@ const NewArrivalSection = () => {
     return <p className="text-center mt-10">No new arrivals found.</p>;
 
   return (
-    <div className="  px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+    <Container>
+      
+       <div className=" bg-white  py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
       {sliceData.map(({ _id, name, image, price }) => (
         <Link key={_id} to={`/productsDetails/${_id}`}>
           <motion.div
-            className="bg-white rounded-lg cursor-target shadow-md overflow-hidden cursor-pointer"
+            className=" rounded-lg cursor-target shadow-md overflow-hidden cursor-pointer"
             initial="offscreen"
             whileInView="onscreen"
             viewport={{ once: true, amount: 0.6 }}
@@ -76,6 +79,7 @@ const NewArrivalSection = () => {
         </Link>
       ))}
     </div>
+   </Container>
   );
 };
 

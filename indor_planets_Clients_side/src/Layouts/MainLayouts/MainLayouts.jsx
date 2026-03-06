@@ -6,7 +6,7 @@ import TargetCursor from "../../../TargetCursor/TargetCursor";
 
 const MainLayouts = () => {
   return (
-    <div className="max-w-screen-xl bg-white dark:bg-white  mx-auto px-4 w-full">
+    <div className=" bg-white dark:bg-white  ">
       <TargetCursor spinDuration={2} hideDefaultCursor={true} />
 
       <Navbar></Navbar>

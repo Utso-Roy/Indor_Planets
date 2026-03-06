@@ -57,6 +57,7 @@ const AdminMangeReport = () => {
             </tr>
           </thead>
           <tbody>
+            
             {data?.map((report, index) => (
               <tr
                 key={report._id}

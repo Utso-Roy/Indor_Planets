@@ -3,12 +3,15 @@ import { FaTint, FaSun, FaLeaf } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router';
 import GradientText from '../GradientText/GradientText';
+import Container from '../../Container/Container';
 
 const CareGuides = () => {
   const navigate = useNavigate()
   return (
-    <div className="bg-green-50 w-full my-5 py-14 px-6 md:px-16 lg:px-24">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    <Container>
+      
+         <div className=" w-full my-5 py-14 ">
+      <div className="grid grid-cols-1 md:grid-cols-2  items-center">
         
         <motion.div
           className="w-full"
@@ -20,7 +23,7 @@ const CareGuides = () => {
           <img
             src="https://i.ibb.co/XfTG95wd/233-I-have-a-house-plant4-1024x700.jpg" 
             alt="Plant Care"
-            className="rounded-lg shadow-lg w-full max-h-[300px] object-cover"
+            className="rounded-lg shadow-lg max-w-5xl max-h-[300px] object-cover"
           />
         </motion.div>
 
@@ -47,6 +50,7 @@ const CareGuides = () => {
         </motion.div>
       </div>
     </div>
+ </Container>
   );
 };
 

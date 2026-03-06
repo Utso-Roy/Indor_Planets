@@ -3,6 +3,7 @@ import { motion, Variants } from "framer-motion";
 import axiosInstance from "../../Utils/axiosInstance";
 import { Link } from "react-router";
 import Loading from "../../Loading/Loading";
+import Container from "../../Container/Container";
 
 interface Plant {
   _id: string;
@@ -47,7 +48,9 @@ const BestSellerSection = () => {
     return <p className="text-center mt-10">Products Not Found.</p>;
 
   return (
-    <div className=" px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+    <Container>
+      
+         <div className="  py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
       {newData.map(({ _id, name, image, rating, price }) => (
         <Link key={_id} to={`/productsDetails/${_id}`}>
           <motion.div
@@ -93,6 +96,7 @@ const BestSellerSection = () => {
         </Link>
       ))}
     </div>
+ </Container>
   );
 };
 

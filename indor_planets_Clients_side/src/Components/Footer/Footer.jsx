@@ -1,10 +1,13 @@
 import React from "react";
 import { FaFacebookSquare, FaInstagramSquare, FaTwitterSquare } from "react-icons/fa";
+import Container from "../../Container/Container";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#14532d] text-white px-6 py-10 relative">
-      <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
+    <footer className="bg-[#14532d] text-white  py-10 relative">
+      <Container>
+        
+         <div className=" flex flex-col items-center gap-6">
         {/* Logo & Description */}
         <div className="text-center">
           <div className="flex items-center justify-center mb-3">
@@ -56,6 +59,7 @@ const Footer = () => {
       <div className="absolute left-6 bottom-4 text-xs text-gray-300">
         Developed by Utso Roy
       </div>
+     </Container>
     </footer>
   );
 };

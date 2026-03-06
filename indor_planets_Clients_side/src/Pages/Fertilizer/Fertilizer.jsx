@@ -4,6 +4,7 @@ import Loading from "../../Loading/Loading";
 import axiosInstance from "../../Utils/axiosInstance";
 import { Link } from "react-router";
 import FertilizerReviewProducts from "./FertilizerReviewProducts";
+import Container from "../../Container/Container";
 
 const Fertilizer = () => {
   const [fertilizers, setFertilizers] = useState([]);
@@ -19,7 +20,9 @@ const Fertilizer = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-5">
+      <Container>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-5">
       {fertilizers.map((fertilizer) => (
         <Link
           key={fertilizer?._id}
@@ -51,6 +54,7 @@ const Fertilizer = () => {
       </div>
       
       <FertilizerReviewProducts></FertilizerReviewProducts>
+      </Container>
     </div>
   );
 };

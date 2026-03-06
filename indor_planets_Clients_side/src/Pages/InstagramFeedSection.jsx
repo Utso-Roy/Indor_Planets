@@ -1,5 +1,6 @@
 import React from "react";
 import GradientText from "../Components/GradientText/GradientText";
+import Container from "../Container/Container";
 
 const InstagramFeedSection = () => {
   const images = [
@@ -13,8 +14,10 @@ const InstagramFeedSection = () => {
   ];
 
   return (
-    <section className="bg-green-50 py-12">
-      <div className=" px-6">
+    <section className="bg-gray-50 py-12">
+      <Container>
+        
+         <div>
         {/* Section Title */}
         <GradientText
             colors={['#4ade80', '#bef264', '#4ade80']}
@@ -57,6 +60,7 @@ const InstagramFeedSection = () => {
           </a>
         </div>
       </div>
+     </Container>
     </section>
   );
 };
