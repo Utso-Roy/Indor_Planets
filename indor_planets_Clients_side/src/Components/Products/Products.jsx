@@ -18,7 +18,7 @@ const Products = () => {
     setLoading(true);
     axiosInstance(`/allIndoorPlants?page=${page}&limit=${limit}&search=${searchTerm}`)
       .then((res) => {
-        setProducts(res.data.data);
+        setProducts(res.data?.data || []);
         setTotalPages(res.data.totalPages);
         setLoading(false);
       })
@@ -39,6 +39,11 @@ const Products = () => {
 
   if (loading) {
     return <Loading />;
+  }
+
+  if (!products) {
+    return <Loading></Loading>
+   
   }
 
   return (

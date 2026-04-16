@@ -18,8 +18,6 @@ const DashboardLayout = () => {
      {/* <Footer></Footer> */}
     </div>
 
-    
-
   );
 };
 
