@@ -88,7 +88,6 @@ const Sidebar = () => {
         {isOpen ? <IoMdClose className="text-2xl" /> : <IoMdMenu className="text-2xl" />}
       </button>
 
-      {/* Overlay for mobile */}
       {isOpen && (
         <div
           onClick={toggleSidebar}
